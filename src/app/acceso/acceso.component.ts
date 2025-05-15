@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsuarioService } from '../services/Usuario/usuario.service';
 import { Usuario } from '../models/Usuario/usuario';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-acceso',
@@ -18,10 +20,20 @@ export class AccesoComponent {
     contrasenya: ''
   };
 
+  loginUsuario = {
+    login: '', // puede ser nombreUsuario o email
+    contrasenya: ''
+  };
+
   error: string = '';
   exito: string = '';
+  loginError: string = '';
+  loginExito: string = '';
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(
+    private usuarioService: UsuarioService,
+    private router: Router // ⬅️ Inyectamos Router para redirigir
+  ) {}
 
   registrar() {
     this.error = '';
@@ -47,8 +59,7 @@ export class AccesoComponent {
       if (existe) {
         this.error = 'El nombre de usuario o el email ya están registrados.';
       } else {
-        // 🔧 Aquí agregamos los campos faltantes al objeto
-        const usuarioAEnviar = {
+        const usuarioAEnviar: Usuario = {
           ...this.nuevoUsuario,
           idRol: 1,
           idHermano: null,
@@ -69,6 +80,48 @@ export class AccesoComponent {
           }
         });
       }
+    });
+  }
+
+  iniciarSesion() {
+    this.loginError = '';
+    this.loginExito = '';
+
+    const { login, contrasenya } = this.loginUsuario;
+
+    if (!login || !contrasenya) {
+      this.loginError = 'Todos los campos son obligatorios.';
+      return;
+    }
+
+    this.usuarioService.obtenerUsuarios().subscribe((usuarios) => {
+      const usuario = usuarios.find(
+        (u) => u.nombreUsuario === login || u.email === login
+      );
+
+      if (!usuario) {
+        this.loginError = 'Usuario no encontrado.';
+        return;
+      }
+
+      bcrypt.compare(contrasenya, usuario.contrasenya, (err, esValida) => {
+        if (esValida) {
+          // ✅ Guardamos los datos relevantes en localStorage
+          localStorage.setItem('usuarioId', usuario.id?.toString() || '');
+          localStorage.setItem('nombreUsuario', usuario.nombreUsuario);
+          localStorage.setItem('email', usuario.email);
+          localStorage.setItem('idRol', usuario.idRol?.toString() || '');
+          localStorage.setItem('idHermano', usuario.idHermano != null ? usuario.idHermano.toString() : '');
+
+          this.loginError = '';
+          this.loginExito = 'Sesión iniciada correctamente.';
+
+          // ✅ Redirigimos a la página principal
+          this.router.navigate(['/']);
+        } else {
+          this.loginError = 'Contraseña incorrecta.';
+        }
+      });
     });
   }
 }

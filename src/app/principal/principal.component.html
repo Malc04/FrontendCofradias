@@ -1,5 +1,39 @@
 <main>
-    <a href="/acceso">
-        <p>registro</p>
+
+    <a *ngIf="esRol8" href="/gestionrol">
+        <p>
+            Gestionar roles
+        </p>
     </a>
+
+
+    <nav class="barra-navegacion">
+        <button routerLink="/">Inicio</button>
+        <button routerLink="/afiliacion">Afiliación</button>
+        <button routerLink="/cuartelillo">Cuartelillo</button>
+        <button routerLink="/noticia">Noticias</button>
+        <button routerLink="/tienda">Tienda</button>
+    </nav>
+
+    <router-outlet></router-outlet>
+
+
+    <div class="sesion">
+        <!-- Si NO hay sesión, muestra el enlace a /acceso -->
+        <a *ngIf="!haySesion()" href="/acceso">
+            <p>registro</p>
+        </a>
+
+        <!-- Si hay sesión, muestra el nombre del usuario -->
+        <p *ngIf="haySesion()">
+            Bienvenido, {{ obtenerNombreUsuario() }}
+        </p>
+    </div>
+
+
+
+    <button *ngIf="haySesion()" (click)="cerrarSesion()">
+        Cerrar sesión
+    </button>
+
 </main>

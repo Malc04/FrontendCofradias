@@ -32,8 +32,8 @@ export class AccesoComponent {
 
   constructor(
     private usuarioService: UsuarioService,
-    private router: Router // ⬅️ Inyectamos Router para redirigir
-  ) {}
+    private router: Router
+  ) { }
 
   registrar() {
     this.error = '';
@@ -106,7 +106,6 @@ export class AccesoComponent {
 
       bcrypt.compare(contrasenya, usuario.contrasenya, (err, esValida) => {
         if (esValida) {
-          // ✅ Guardamos los datos relevantes en localStorage
           localStorage.setItem('usuarioId', usuario.id?.toString() || '');
           localStorage.setItem('nombreUsuario', usuario.nombreUsuario);
           localStorage.setItem('email', usuario.email);
@@ -116,7 +115,6 @@ export class AccesoComponent {
           this.loginError = '';
           this.loginExito = 'Sesión iniciada correctamente.';
 
-          // ✅ Redirigimos a la página principal
           this.router.navigate(['/']);
         } else {
           this.loginError = 'Contraseña incorrecta.';

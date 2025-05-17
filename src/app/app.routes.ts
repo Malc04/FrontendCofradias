@@ -7,6 +7,7 @@ import { CuartelilloComponent } from './cuartelillo/cuartelillo.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { TiendaComponent } from './tienda/tienda.component';
 import { GestionrolComponent } from './gestionrol/gestionrol.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 export const routes: Routes = [
     {
@@ -21,5 +22,7 @@ export const routes: Routes = [
         ]
     },
     { path: 'acceso', component: AccesoComponent },
-    { path: 'gestionrol', component: GestionrolComponent }
+    { path: 'gestionrol', component: GestionrolComponent },
+    { path: 'perfil', component: PerfilComponent }
+
 ];

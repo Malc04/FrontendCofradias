@@ -29,6 +29,15 @@ export class UsuarioService {
       idRol: nuevoRolId
     });
   }
+
+  obtenerUsuarioPorId(id: number) {
+    return this.http.get<Usuario>(`http://localhost:8080/api/usuarios/${id}`);
+  }
+  
+  actualizarUsuario(id: number, campos: Partial<Usuario>) {
+    return this.http.patch<Usuario>(`http://localhost:8080/api/usuarios/${id}/nombre`, campos);
+  }
+  
   
 
 }

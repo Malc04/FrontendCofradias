@@ -20,4 +20,13 @@ export class HermanoService {
     return this.http.get<Hermano[]>(this.apiUrl); // Usa tu endpoint real
   }
   
+
+  obtenerHermanoPorId(id: number) {
+    return this.http.get<Hermano>(`http://localhost:8080/api/hermanos/${id}`);
+  }
+  
+  actualizarHermano(id: number, campos: Partial<Hermano>) {
+    return this.http.patch<Hermano>(`http://localhost:8080/api/hermanos/${id}/domiciliacion`, campos);
+  }
+  
 }

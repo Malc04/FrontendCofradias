@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 export class PrincipalComponent implements OnInit {
   usuarios: Usuario[] = [];
   esRol8: boolean = false;
+  hayUsuario: boolean = false;
 
   constructor(private usuarioService: UsuarioService) { 
     {
@@ -22,10 +23,13 @@ export class PrincipalComponent implements OnInit {
     }
   }
 
+
+
   ngOnInit(): void {
     this.usuarioService.obtenerUsuarios().subscribe((data: Usuario[]) => {
       this.usuarios = data;
     });
+    this.hayUsuario = localStorage.getItem('usuarioId') !== null;
   }
 
   // Muestra el botón si hay un usuario guardado

@@ -23,11 +23,19 @@ export class AfiliacionComponent {
 
   exito: string = '';
   error: string = '';
+  usuarioId: string | null = null;
 
   constructor(
     private hermanoService: HermanoService,
     private usuarioService: UsuarioService // Inyecta aquí
   ) { }
+
+
+  ngOnInit() {
+    this.usuarioId = localStorage.getItem('usuarioId');
+    if (this.usuarioId) {
+    }
+  }
 
   estaAfiliado(): boolean {
     const idHermano = localStorage.getItem('idHermano');

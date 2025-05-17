@@ -1,45 +1,55 @@
 <main>
-    <div *ngIf="!estaAfiliado(); else yaAfiliado">
 
-        <div class="nuevoafiliado">
-            <form (ngSubmit)="afiliar()" #form="ngForm">
-                <label>Nombre completo:</label>
-                <input type="text" [(ngModel)]="hermano.nombreCompleto" name="nombreCompleto" required />
+    <div *ngIf="usuarioId; else noRegistrado">
 
-                <label>DNI:</label>
-                <input type="text" [(ngModel)]="hermano.dni" name="dni" required />
+        <div *ngIf="!estaAfiliado(); else yaAfiliado">
 
-                <label>Fecha de nacimiento:</label>
-                <input type="date" [(ngModel)]="hermano.fechaNacimiento" name="fechaNacimiento" required />
+            <div class="nuevoafiliado">
+                <form (ngSubmit)="afiliar()" #form="ngForm">
+                    <label>Nombre completo:</label>
+                    <input type="text" [(ngModel)]="hermano.nombreCompleto" name="nombreCompleto" required />
 
-                <label>Domiciliación bancaria:</label>
-                <input type="text" [(ngModel)]="hermano.domiciliacionBancaria" name="domiciliacionBancaria" required />
+                    <label>DNI:</label>
+                    <input type="text" [(ngModel)]="hermano.dni" name="dni" required />
 
-                <button type="submit">Afiliarse</button>
-                <p *ngIf="error">{{ error }}</p>
-            </form>
-        </div>
-        <div class="vincularafiliado">
+                    <label>Fecha de nacimiento:</label>
+                    <input type="date" [(ngModel)]="hermano.fechaNacimiento" name="fechaNacimiento" required />
 
-            <h3>Vincular Hermano Existente</h3>
-            <div>
-                <label for="numeroHermano">Número de Hermano:</label>
-                <input id="numeroHermano" [(ngModel)]="numeroHermano" type="number" />
+                    <label>Domiciliación bancaria:</label>
+                    <input type="text" [(ngModel)]="hermano.domiciliacionBancaria" name="domiciliacionBancaria"
+                        required />
 
-                <label for="dniHermano">DNI:</label>
-                <input id="dniHermano" [(ngModel)]="dniHermano" type="text" />
-
-                <button (click)="vincularHermanoExistente()">Vincular Hermano</button>
+                    <button type="submit">Afiliarse</button>
+                    <p *ngIf="error">{{ error }}</p>
+                </form>
             </div>
-            <p *ngIf="errorVincular" style="color: red;">{{ errorVincular }}</p>
+            <div class="vincularafiliado">
+
+                <h3>Vincular Hermano Existente</h3>
+                <div>
+                    <label for="numeroHermano">Número de Hermano:</label>
+                    <input id="numeroHermano" [(ngModel)]="numeroHermano" type="number" />
+
+                    <label for="dniHermano">DNI:</label>
+                    <input id="dniHermano" [(ngModel)]="dniHermano" type="text" />
+
+                    <button (click)="vincularHermanoExistente()">Vincular Hermano</button>
+                </div>
+                <p *ngIf="errorVincular" style="color: red;">{{ errorVincular }}</p>
+            </div>
         </div>
+
+        <p *ngIf="exito">{{ exito }}</p>
+
+        <p *ngIf="exitoVincular" style="color: green;">{{ exitoVincular }}</p>
+
+        <ng-template #yaAfiliado>
+            <p>Ya estás afiliado a la hermandad.</p>
+        </ng-template>
+
     </div>
 
-    <p *ngIf="exito">{{ exito }}</p>
-
-    <p *ngIf="exitoVincular" style="color: green;">{{ exitoVincular }}</p>
-
-    <ng-template #yaAfiliado>
-        <p>Ya estás afiliado a la hermandad.</p>
+    <ng-template #noRegistrado>
+        <p>Debes estar registrado para afiliarte.</p>
     </ng-template>
 </main>

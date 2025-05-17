@@ -1,0 +1,49 @@
+<main>
+    <a href="/">
+        <p>Inicio</p>
+    </a>
+
+    <!-- Mostrar datos de usuario solo si existe -->
+    <div *ngIf="usuario as u">
+        <h2>Perfil de Usuario</h2>
+
+        <label>Nombre de usuario:</label>
+        <input [(ngModel)]="u.nombreUsuario" />
+
+        <label>Email:</label>
+        <input [value]="u.email" disabled />
+
+        <label>Fecha de registro:</label>
+        <input [value]="u.fechaRegistro | date:'d \'de\' MMMM \'de\' y' : 'es'" disabled />
+
+        <button (click)="guardarUsuario()">Guardar Usuario</button>
+    </div>
+
+    <hr *ngIf="hermano" />
+
+    <!-- Mostrar datos del hermano solo si existe -->
+    <div *ngIf="hermano as h">
+        <h3>Datos del Hermano</h3>
+
+        <label>Nombre completo:</label>
+        <input [value]="h.nombreCompleto" disabled />
+
+        <label>DNI:</label>
+        <input [value]="h.dni" disabled />
+
+        <label>Fecha de nacimiento:</label>
+        <input [value]="h.fechaNacimiento | date:'d \'de\' MMMM \'de\' y' : 'es'" disabled />
+
+        <label>Fecha de ingreso:</label>
+        <input [value]="h.fechaIngreso | date:'d \'de\' MMMM \'de\' y' : 'es'" disabled />
+
+        <label>Número de hermano:</label>
+        <input [value]="h.numeroHermano" disabled />
+
+        <label>Domiciliación bancaria:</label>
+        <input [(ngModel)]="h.domiciliacionBancaria" />
+
+        <button (click)="guardarHermano()">Guardar Hermano</button>
+    </div>
+
+</main>

@@ -1,1 +1,37 @@
-<p>cuartelillo works!</p>
+<main>
+    <div *ngIf="usuarioId; else noRegistrado">
+
+        <h2>Donativos</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th *ngIf="esAdmin">Usuario</th>
+                    <th *ngIf="esAdmin">Fecha</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let d of donativos">
+                    <td *ngIf="esAdmin">{{ nombreUsuario(d.idUsuario) }}</td>
+                    <td *ngIf="esAdmin">{{ d.fecha | date:'dd MMMM yyyy' }}</td>
+                    <td>{{ d.montoDonativo | currency:'EUR' }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><strong>Total donado:</strong> {{ montoTotal | currency:'EUR' }}</p>
+
+
+        <div>
+            <h3>Nuevo donativo</h3>
+            <input type="number" [(ngModel)]="nuevoMonto" placeholder="Monto" />
+            <button (click)="agregarDonativo()">Donar</button>
+        </div>
+    </div>
+
+    <ng-template #noRegistrado>
+        <p>Debes estar registrado para hacer una donación.</p>
+    </ng-template>
+
+</main>

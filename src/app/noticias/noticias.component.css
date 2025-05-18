@@ -1,0 +1,8 @@
+.noticia-resumen {
+    display: flex;
+    background-color: gray;
+}
+
+.noticia-resumen:hover {
+    background-color: blue;
+}

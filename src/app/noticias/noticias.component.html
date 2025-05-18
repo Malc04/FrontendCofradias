@@ -1,1 +1,39 @@
-<p>noticias works!</p>
+
+    <!-- LISTADO DE NOTICIAS -->
+    <div *ngIf="!noticiaSeleccionada">
+        <h2>Noticias</h2>
+
+        <div class="noticia-resumen" *ngFor="let noticia of noticias" (click)="seleccionarNoticia(noticia)">
+            <img [src]="noticia.fotoUrl" alt="Imagen noticia" width="200">
+            <h3>{{ noticia.titulo }}</h3>
+            <p><strong>Fecha:</strong> {{ noticia.fechaPublicacion | date:'longDate' }}</p>
+        </div>
+
+        <!-- FORMULARIO PARA CREAR NOTICIA -->
+        <div *ngIf="esAdmin()">
+            <h3>Crear nueva noticia</h3>
+            <form (ngSubmit)="crearNoticia()">
+                <input type="text" [(ngModel)]="nuevaNoticia.titulo" name="titulo" placeholder="Título" required>
+                <textarea [(ngModel)]="nuevaNoticia.contenido" name="contenido" placeholder="Contenido"
+                    required></textarea>
+                <input type="text" [(ngModel)]="nuevaNoticia.fotoUrl" name="fotoUrl" placeholder="URL de la imagen"
+                    required>
+                <button type="submit">Publicar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- DETALLE DE UNA NOTICIA -->
+    <div *ngIf="noticiaSeleccionada">
+        <button (click)="volverAListado()">← Volver</button>
+        <h2>{{ noticiaSeleccionada.titulo }}</h2>
+        <img [src]="noticiaSeleccionada.fotoUrl" alt="Imagen" width="300">
+        <p><strong>Fecha:</strong> {{ noticiaSeleccionada.fechaPublicacion | date:'longDate' }}</p>
+        <p><strong>Autor:</strong> {{ getNombreAutor(noticiaSeleccionada.idUsuario) }}</p>
+        <p>{{ noticiaSeleccionada.contenido }}</p>
+
+        <!-- Botón de eliminación SOLO para admins -->
+        <div *ngIf="esAdmin()">
+            <button (click)="eliminarNoticia(noticiaSeleccionada.id)">🗑️ Eliminar noticia</button>
+        </div>
+    </div>

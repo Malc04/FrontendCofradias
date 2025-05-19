@@ -5,6 +5,9 @@ import { Noticia } from '../models/Noticia/noticia';
 import { Usuario } from '../models/Usuario/usuario';
 import { NoticiaService } from '../services/Noticia/noticia.service';
 import { UsuarioService } from '../services/Usuario/usuario.service';
+import { RolService } from '../services/Rol/rol.service';
+import { BandejaNoticiaService } from '../services/BandejaNoticia/bandeja-noticia.service';
+import { Rol } from '../models/Rol/rol';
 
 @Component({
   selector: 'app-noticias',
@@ -18,6 +21,11 @@ export class NoticiasComponent implements OnInit {
   usuarios: Usuario[] = [];
   noticiaSeleccionada: Noticia | null = null;
 
+  roles: Rol[] = [];
+  rolSeleccionadoId: string = '';
+  tipoNoticia: string = '';
+
+
   nuevaNoticia: Partial<Noticia> = {
     titulo: '',
     contenido: '',
@@ -29,15 +37,22 @@ export class NoticiasComponent implements OnInit {
 
   constructor(
     private noticiaService: NoticiaService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private rolService: RolService,
+    private bandejaNoticiaService: BandejaNoticiaService
   ) { }
+
 
   ngOnInit() {
     this.cargarNoticias();
     this.usuarioService.obtenerUsuarios().subscribe(data => {
       this.usuarios = data;
     });
+    this.rolService.obtenerRoles().subscribe(data => {
+      this.roles = data;
+    });
   }
+
 
   cargarNoticias() {
     this.noticiaService.getNoticias().subscribe(data => {
@@ -68,21 +83,51 @@ export class NoticiasComponent implements OnInit {
         idUsuario: parseInt(this.usuarioId)
       };
 
-      console.log('Noticia que voy a enviar:', noticiaAEnviar);
-
-      this.noticiaService.crearNoticia(noticiaAEnviar).subscribe(() => {
+      this.noticiaService.crearNoticia(noticiaAEnviar).subscribe((nuevaNoticiaCreada) => {
         alert('Noticia creada');
+        this.cargarNoticias();
         this.nuevaNoticia = {
           titulo: '',
           contenido: '',
           fotoUrl: ''
         };
-        this.cargarNoticias();
+
+        // Si se ha seleccionado un rol para enviar notificaciones
+        if (this.rolSeleccionadoId && this.tipoNoticia) {
+          const usuariosFiltrados = this.usuarios.filter(
+            u => u.idRol === parseInt(this.rolSeleccionadoId)
+          );
+
+          console.log('Usuarios con rol seleccionado:', usuariosFiltrados);
+
+          usuariosFiltrados.forEach(usuario => {
+            if (usuario.id !== undefined) {
+              const notificacion = {
+                idUsuario: usuario.id,
+                idNoticia: nuevaNoticiaCreada.id,
+                tipoNoticia: this.tipoNoticia
+              };
+
+              console.log('Creando notificación:', notificacion);
+
+              this.bandejaNoticiaService.crearBandejaNoticia(notificacion).subscribe({
+                next: () => console.log(`✅ Notificación enviada a ${usuario.nombreUsuario}`),
+                error: err => console.error(`❌ Error al enviar notificación:`, err)
+              });
+            }
+          });
+        }
+
+
+        // Reset
+        this.rolSeleccionadoId = '';
+        this.tipoNoticia = '';
       });
     } else {
       alert('Completa todos los campos para crear la noticia.');
     }
   }
+
 
 
 

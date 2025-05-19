@@ -42,4 +42,22 @@
         Cerrar sesión
     </button>
 
+    <div class="notificaciones-container" *ngIf="haySesion()">
+        <button class="btn-bandeja" (click)="toggleNotificaciones()">
+            📨
+        </button>
+
+        <div class="popup-notificaciones" *ngIf="mostrarNotificaciones" (clickOutside)="cerrarNotificaciones()"
+            tabindex="0">
+            <h4>Notificaciones</h4>
+            <button class="cerrar-btn" (click)="cerrarNotificaciones()">X</button>
+            <ul>
+                <li *ngFor="let notif of notificaciones">
+                    <strong>{{ notif.tituloNoticia || 'Cargando...' }}</strong><br>
+                    <small>{{ notif.tipoNoticia }}</small>
+                </li>
+            </ul>
+            <p *ngIf="notificaciones.length === 0">No tienes notificaciones.</p>
+        </div>
+    </div>
 </main>

@@ -3,27 +3,107 @@ main {
     margin: 0;
     width: 100vw;
     height: 100vh;
-    background-color: aqua;
+    background-color: white;
 }
 
-.form {
+header {
     display: flex;
-    background-color: wheat;
-    height: 100%;
-    width: 35%;
+    height: 12vh;
+    width: 100vw;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 0.5vh solid black;
 }
 
-.registro {
-    background-color: black;
-    width: 20%;
+.barra-navegacion>button {
+    margin: 3em;
+    font-size: large;
 }
 
-.iniciosesion {
-    background-color: gray;
-    width: 20%;
+.logo>img {
+    width: 5vw;
 }
 
-.hermandad {
-    background-color: blueviolet;
-    width: 25%;
+.app {
+    display: flex;
+    height: 84vh;
+    width: 100vw;
+    justify-content: center;
 }
+
+.cerrarsesion {
+    margin-left: 95vw;
+}
+
+.notificaciones-container {
+    position: relative;
+    display: inline-block;
+    z-index: 9999;
+  }
+  
+  .btn-bandeja {
+    position: relative;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+  }
+  
+  .popup-notificaciones {
+    position: absolute;
+    right: 0;
+    margin-top: 5px;
+    width: 250px;
+    max-height: 300px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px;
+    z-index: 100;
+    border-radius: 4px;
+  }
+  
+  .popup-notificaciones h4 {
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .cerrar-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #999;
+  }
+  
+  .cerrar-btn:hover {
+    color: #333;
+  }
+  
+  .popup-notificaciones ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .popup-notificaciones li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+  }
+  

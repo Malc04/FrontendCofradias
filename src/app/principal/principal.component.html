@@ -1,63 +1,71 @@
 <main>
+    <header>
 
-    <a *ngIf="esRol8" href="/gestionrol">
-        <p>
-            Gestionar roles
-        </p>
-    </a>
-
-    <a *ngIf="hayUsuario" href="/perfil">
-        <p>
-            Gestionar perfil
-        </p>
-    </a>
-
-
-    <nav class="barra-navegacion">
-        <button routerLink="/">Inicio</button>
-        <button routerLink="/afiliacion">Afiliación</button>
-        <button routerLink="/cuartelillo">Cuartelillo</button>
-        <button routerLink="/noticia">Noticias</button>
-        <button routerLink="/tienda">Tienda</button>
-    </nav>
-
-    <router-outlet></router-outlet>
-
-
-    <div class="sesion">
-        <!-- Si NO hay sesión, muestra el enlace a /acceso -->
-        <a *ngIf="!haySesion()" href="/acceso">
-            <p>registro</p>
-        </a>
-
-        <!-- Si hay sesión, muestra el nombre del usuario -->
-        <p *ngIf="haySesion()">
-            Bienvenido, {{ obtenerNombreUsuario() }}
-        </p>
-    </div>
-
-
-
-    <button *ngIf="haySesion()" (click)="cerrarSesion()">
-        Cerrar sesión
-    </button>
-
-    <div class="notificaciones-container" *ngIf="haySesion()">
-        <button class="btn-bandeja" (click)="toggleNotificaciones()">
-            📨
-        </button>
-
-        <div class="popup-notificaciones" *ngIf="mostrarNotificaciones" (clickOutside)="cerrarNotificaciones()"
-            tabindex="0">
-            <h4>Notificaciones</h4>
-            <button class="cerrar-btn" (click)="cerrarNotificaciones()">X</button>
-            <ul>
-                <li *ngFor="let notif of notificaciones">
-                    <strong>{{ notif.tituloNoticia || 'Cargando...' }}</strong><br>
-                    <small>{{ notif.tipoNoticia }}</small>
-                </li>
-            </ul>
-            <p *ngIf="notificaciones.length === 0">No tienes notificaciones.</p>
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/ESCUDO_HERMANDAD.png" alt="">
         </div>
+
+
+        <nav class="barra-navegacion">
+            <button routerLink="/">Inicio</button>
+            <button routerLink="/afiliacion">Afiliación</button>
+            <button routerLink="/cuartelillo">Cuartelillo</button>
+            <button routerLink="/noticia">Noticias</button>
+            <button routerLink="/tienda">Tienda</button>
+        </nav>
+
+        <section>
+            <a *ngIf="esRol8" href="/gestionrol">
+                <p>
+                    Roles
+                </p>
+            </a>
+    
+            <div class="sesion">
+                <!-- Si NO hay sesión, muestra el enlace a /acceso -->
+                <a *ngIf="!haySesion()" href="/acceso">
+                    <p>registro</p>
+                </a>
+    
+    
+                <a *ngIf="hayUsuario" href="/perfil">
+                    <p *ngIf="haySesion()">
+                        Bienvenido, {{ obtenerNombreUsuario() }}
+                    </p>
+                </a>
+            </div>
+    
+            <div class="notificaciones-container" *ngIf="haySesion()">
+                <button class="btn-bandeja" (click)="toggleNotificaciones()">
+                    📨
+                </button>
+    
+                <div class="popup-notificaciones" *ngIf="mostrarNotificaciones" (clickOutside)="cerrarNotificaciones()"
+                    tabindex="0">
+                    <h4>Notificaciones</h4>
+                    <button class="cerrar-btn" (click)="cerrarNotificaciones()">X</button>
+                    <ul>
+                        <li *ngFor="let notif of notificaciones">
+                            <strong>{{ notif.tituloNoticia || 'Cargando...' }}</strong><br>
+                            <small>{{ notif.tipoNoticia }}</small>
+                        </li>
+                    </ul>
+                    <p *ngIf="notificaciones.length === 0">No tienes notificaciones.</p>
+                </div>
+            </div>
+        </section>
+    </header>
+
+
+    <section class="app">
+        <router-outlet></router-outlet>
+    </section>
+
+
+    <div class="cerrarsesion">
+        <button *ngIf="haySesion()" (click)="cerrarSesion()">
+            Cerrar sesión
+        </button>
     </div>
+
 </main>

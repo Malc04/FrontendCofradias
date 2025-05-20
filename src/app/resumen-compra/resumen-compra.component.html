@@ -1,0 +1,16 @@
+<main>
+    <h2>Resumen de tu compra</h2>
+
+    <div *ngFor="let item of carrito" class="producto">
+        <h3>{{ item.producto.nombre }}</h3>
+        <p>Precio unitario: {{ item.producto.precio }} €</p>
+        <p>Cantidad: {{ item.cantidad }}</p>
+        <p>Subtotal: {{ item.producto.precio * item.cantidad }} €</p>
+        <hr />
+    </div>
+
+    <h3>Total a pagar: {{ total }} €</h3>
+
+    <button (click)="comprar()">Comprar</button>
+
+</main>

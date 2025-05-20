@@ -1,0 +1,49 @@
+.tienda-contenedor {
+  padding: 1rem;
+}
+
+.producto-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.producto-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  width: 200px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.producto-foto {
+  width: 100%;
+  height: auto;
+}
+
+.producto-detalle {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.sin-stock {
+  color: red;
+  font-weight: bold;
+}
+
+.carrito-icono {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+}
+
+.carrito-desplegable {
+  position: fixed;
+  top: 3rem;
+  right: 1rem;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  z-index: 1000;
+  width: 250px;
+}

@@ -6,4 +6,3 @@ export interface Producto {
     stock: number;
     fotoUrl: string;
   }
-  

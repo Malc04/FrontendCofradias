@@ -1,1 +1,44 @@
-<p>tienda works!</p>
+<main class="tienda-contenedor">
+    <h2>Tienda</h2>
+
+    <!-- Icono carrito -->
+    <!-- Solo mostrar si hay sesión -->
+    <button *ngIf="sesionIniciada" (click)="toggleCarrito()" class="carrito-icono">
+        🛒 Ver pedido
+    </button>
+
+    <!-- Carrito desplegable -->
+    <div *ngIf="sesionIniciada && mostrarCarrito" class="carrito-desplegable">
+        <h3>Tu pedido</h3>
+        <ul>
+            <li *ngFor="let item of carrito">
+                {{ item.producto.nombre }} - {{ item.producto.precio | currency }} x {{ item.cantidad }}
+                <button (click)="reducirCantidad(item.producto.id)">➖</button>
+            </li>
+        </ul>
+
+        <button (click)="finalizarCompra()" [disabled]="carrito.length === 0">Finalizar compra</button>
+    </div>
+
+    <!-- Lista de productos -->
+    <div class="producto-grid">
+        <div *ngFor="let producto of productos" class="producto-card">
+            <img [src]="producto.fotoUrl" alt="{{ producto.nombre }}" class="producto-foto" />
+            <h4>{{ producto.nombre }}</h4>
+            <p>{{ producto.precio | currency:'EUR' }}</p>
+            <button (click)="toggleDetalle(producto.id)">
+                {{ productoExpandido === producto.id ? 'Ocultar' : 'Ver detalles' }}
+            </button>
+
+            <!-- Detalles -->
+            <div *ngIf="productoExpandido === producto.id" class="producto-detalle">
+                <p>{{ producto.descripcion }}</p>
+                <p *ngIf="producto.stock === 0" class="sin-stock">Producto sin stock</p>
+                <p *ngIf="producto.stock > 0">Stock disponible</p>
+                <button *ngIf="sesionIniciada" [disabled]="producto.stock === 0" (click)="anadirAlCarrito(producto)">
+                    Añadir al pedido
+                </button>
+            </div>
+        </div>
+    </div>
+</main>

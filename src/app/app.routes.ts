@@ -9,6 +9,7 @@ import { TiendaComponent } from './tienda/tienda.component';
 import { GestionrolComponent } from './gestionrol/gestionrol.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ResumenCompraComponent } from './resumen-compra/resumen-compra.component';
+import { HistorialComprasComponent } from './historial-compras/historial-compras.component';
 
 export const routes: Routes = [
     {
@@ -25,7 +26,7 @@ export const routes: Routes = [
     { path: 'acceso', component: AccesoComponent },
     { path: 'gestionrol', component: GestionrolComponent },
     { path: 'perfil', component: PerfilComponent },
-    { path: 'resumen-compra', component: ResumenCompraComponent }
-
+    { path: 'resumen-compra', component: ResumenCompraComponent },
+    { path: 'historial-compras', component: HistorialComprasComponent },
 
 ];

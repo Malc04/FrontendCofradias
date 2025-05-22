@@ -1,0 +1,43 @@
+<main>
+
+    <a href="/">
+        <p>Inicio</p>
+    </a>
+
+
+    <h2>Historial de Compras</h2>
+
+    <div *ngFor="let pedido of pedidos" class="pedido-box">
+        <h3 (click)="toggleDetalles(pedido.id)" style="cursor: pointer;">
+            Pedido #{{ pedido.id }} - {{ pedido.fechaPedido | date }}
+        </h3>
+        <p>Total: {{ pedido.total }} €</p>
+
+        <div *ngIf="pedidoAbiertoId === pedido.id && detalles[pedido.id]">
+            <div *ngFor="let detalle of detalles[pedido.id]" class="detalle-box">
+                <ng-container *ngIf="getProducto(detalle.idProducto) as prod">
+                    <img [src]="prod.fotoUrl" width="100" />
+                    <h4>{{ prod.nombre }}</h4>
+                    <p>Cantidad: {{ detalle.cantidad }}</p>
+                    <p>Subtotal: {{ detalle.precioUnitario * detalle.cantidad }} €</p>
+
+                    <div>
+                        <label>Comentario:</label>
+                        <textarea [(ngModel)]="getComentario(prod.id).contenido" rows="2"></textarea>
+
+                        <label>Valoración:
+                            <select [(ngModel)]="getComentario(prod.id).valoracion">
+                                <option *ngFor="let n of [0,1,2,3,4,5]" [value]="n">{{n}}</option>
+                            </select>
+                        </label>
+
+                        <button
+                            (click)="guardarComentario(prod.id, pedido.id, getComentario(prod.id).contenido, getComentario(prod.id).valoracion)">Guardar</button>
+                    </div>
+                </ng-container>
+                <hr />
+            </div>
+        </div>
+    </div>
+
+</main>

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Router, NavigationStart } from '@angular/router';
 import { ProductoService } from '../services/Producto/producto.service';
 import { Producto } from '../models/Producto/producto';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tienda',
@@ -11,12 +12,15 @@ import { Producto } from '../models/Producto/producto';
   templateUrl: './tienda.component.html',
   styleUrls: ['./tienda.component.css']
 })
-export class TiendaComponent implements OnInit {
+export class TiendaComponent implements OnInit, OnDestroy {
   productos: Producto[] = [];
   productoExpandido: number | null = null;
   carrito: { producto: Producto; cantidad: number }[] = [];
   mostrarCarrito: boolean = false;
   sesionIniciada: boolean = false;
+  rutaPermitida = '/resumen-compra';
+  navegandoARutaPermitida = false;
+  routerSubscription!: Subscription;
 
   constructor(
     private productoService: ProductoService,
@@ -26,16 +30,40 @@ export class TiendaComponent implements OnInit {
   ngOnInit(): void {
     const usuarioId = localStorage.getItem('usuarioId');
     this.sesionIniciada = !!usuarioId;
+
     this.productoService.getProductos().subscribe((data) => {
       this.productos = data;
     });
-    window.addEventListener('beforeunload', this.limpiarCarritoAlSalir);
+
+    // Detectar navegación dentro de Angular
+    this.routerSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        if (event.url === this.rutaPermitida) {
+          this.navegandoARutaPermitida = true;
+        } else {
+          this.limpiarCarritoAlSalir();
+        }
+      }
+    });
+
+    // Detectar recarga o cierre de pestaña
+    window.addEventListener('beforeunload', this.handleBeforeUnload);
   }
 
   ngOnDestroy(): void {
-    this.limpiarCarritoAlSalir();
-    window.removeEventListener('beforeunload', this.limpiarCarritoAlSalir);
+    if (!this.navegandoARutaPermitida) {
+      this.limpiarCarritoAlSalir();
+    }
+    this.routerSubscription?.unsubscribe();
+    window.removeEventListener('beforeunload', this.handleBeforeUnload);
   }
+
+  handleBeforeUnload = (event: BeforeUnloadEvent) => {
+    // Si no se va a la ruta permitida, limpiar carrito
+    if (!this.navegandoARutaPermitida) {
+      this.limpiarCarritoAlSalir();
+    }
+  };
 
   toggleDetalle(id: number): void {
     this.productoExpandido = this.productoExpandido === id ? null : id;
@@ -72,7 +100,7 @@ export class TiendaComponent implements OnInit {
   };
 
   finalizarCompra() {
+    this.navegandoARutaPermitida = true;
     this.router.navigate(['/resumen-compra']);
   }
-
 }

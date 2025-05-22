@@ -20,26 +20,32 @@
                     Roles
                 </p>
             </a>
-    
+
             <div class="sesion">
+
+                <a *ngIf="haySesion()" href="/historial-compras">
+                    <p>Historial de compras</p>
+                </a>
+
+
                 <!-- Si NO hay sesión, muestra el enlace a /acceso -->
                 <a *ngIf="!haySesion()" href="/acceso">
-                    <p>registro</p>
+                    <p>Registro</p>
                 </a>
-    
-    
+
+
                 <a *ngIf="hayUsuario" href="/perfil">
                     <p *ngIf="haySesion()">
                         Bienvenido, {{ obtenerNombreUsuario() }}
                     </p>
                 </a>
             </div>
-    
+
             <div class="notificaciones-container" *ngIf="haySesion()">
                 <button class="btn-bandeja" (click)="toggleNotificaciones()">
                     📨
                 </button>
-    
+
                 <div class="popup-notificaciones" *ngIf="mostrarNotificaciones" (clickOutside)="cerrarNotificaciones()"
                     tabindex="0">
                     <h4>Notificaciones</h4>

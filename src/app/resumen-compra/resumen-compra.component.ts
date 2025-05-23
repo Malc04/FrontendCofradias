@@ -18,7 +18,7 @@ export class ResumenCompraComponent implements OnInit {
   constructor(
     private pedidoService: PedidoService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const datosCarrito = localStorage.getItem('carrito');
@@ -36,11 +36,13 @@ export class ResumenCompraComponent implements OnInit {
 
   comprar(): void {
     const usuarioId = Number(localStorage.getItem('usuarioId'));
-    if (!usuarioId) return;
+    const correo = localStorage.getItem('email');
 
-    this.pedidoService.realizarPedido(usuarioId, this.carrito, this.total).subscribe({
+    if (!usuarioId || !correo) return;
+
+    this.pedidoService.realizarPedido(usuarioId, this.carrito, this.total, correo).subscribe({
       next: () => {
-        localStorage.removeItem('carrito'); // Limpia el carrito
+        localStorage.removeItem('carrito');
         this.router.navigate(['/historial-compras']);
       },
       error: (err) => {
@@ -48,6 +50,7 @@ export class ResumenCompraComponent implements OnInit {
       }
     });
   }
+
 
   // Escuchamos el evento de volver atrás en el navegador
   @HostListener('window:popstate', ['$event'])

@@ -12,10 +12,11 @@ export class PedidoService {
 
   constructor(private http: HttpClient) {}
 
-  realizarPedido(usuarioId: number, carrito: { producto: Producto; cantidad: number }[], total: number): Observable<any> {
+  realizarPedido(usuarioId: number, carrito: { producto: Producto; cantidad: number; }[], total: number, correo: string): Observable<any> {
     const pedido = {
       idUsuario: usuarioId,
       total,
+      correo,
       productos: carrito.map(item => ({
         idProducto: item.producto.id,
         cantidad: item.cantidad,

@@ -1,108 +1,170 @@
 main {
-    padding: 0;
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
 header {
-    display: flex;
-    height: 12vh;
-    width: 100vw;
-    justify-content: space-around;
-    align-items: center;
-    border-bottom: 0.5vh solid black;
+  display: flex;
+  height: 14vh;
+  width: 100vw;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #6B1E1E;
+  border-bottom: 1.5vh solid #1B1F5A;
 }
 
-.barra-navegacion>button {
-    margin: 3em;
-    font-size: large;
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 17vw;
 }
 
-.logo>img {
-    width: 5vw;
+.logo img {
+  width: 6.5vw;
+}
+
+.barra-navegacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.barra-navegacion button {
+  margin: 2vw;
+  font-size: 1.25vw;
+  background-color: transparent;
+  border: none;
+  color: #C9A85C;
+  cursor: pointer;
+}
+
+.barra-navegacion button.activo {
+  border-bottom: 0.25vh solid #C9A85C;
+  font-weight: bold;
+}
+
+.navder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 17vw;
+}
+
+.perfil a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.perfil a img {
+  width: auto;
+  height: 5vh;
+}
+
+.sesion {
+  margin-left: 1.25vw;
+}
+
+#link,
+.perfil a {
+  text-decoration: none;
+  color: #C9A85C;
+}
+
+#link p {
+  padding-left: 0.2vw;
+  border-left: 0.2vw solid #C9A85C;
 }
 
 .app {
-    display: flex;
-    height: 84vh;
-    width: 100vw;
-    justify-content: center;
+  display: flex;
+  height: 75vh;
+  width: 100vw;
+  justify-content: center;
+  margin-top: 5vh;
 }
 
 .cerrarsesion {
-    margin-left: 95vw;
+  margin-left: 95vw;
 }
 
 .notificaciones-container {
-    position: relative;
-    display: inline-block;
-    z-index: 9999;
-  }
-  
-  .btn-bandeja {
-    position: relative;
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  .badge {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: red;
-    color: white;
-    border-radius: 50%;
-    font-size: 0.75rem;
-    padding: 2px 6px;
-  }
-  
-  .popup-notificaciones {
-    position: absolute;
-    right: 0;
-    margin-top: 5px;
-    width: 250px;
-    max-height: 300px;
-    overflow-y: auto;
-    background: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 10px;
-    z-index: 100;
-    border-radius: 4px;
-  }
-  
-  .popup-notificaciones h4 {
-    margin-top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .cerrar-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1rem;
-    color: #999;
-  }
-  
-  .cerrar-btn:hover {
-    color: #333;
-  }
-  
-  .popup-notificaciones ul {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-  }
-  
-  .popup-notificaciones li {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 6px;
-  }
-  
+  padding-left: 1vw;
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+
+.btn-bandeja {
+  position: relative;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.btn-bandeja img {
+  width: 1vw;
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+}
+
+.popup-notificaciones {
+  position: absolute;
+  right: 0;
+  margin-top: 5px;
+  width: 250px;
+  max-height: 300px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 100;
+  border-radius: 4px;
+}
+
+.popup-notificaciones h4 {
+  margin-top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cerrar-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #999;
+}
+
+.cerrar-btn:hover {
+  color: #333;
+}
+
+.popup-notificaciones ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.popup-notificaciones li {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+}

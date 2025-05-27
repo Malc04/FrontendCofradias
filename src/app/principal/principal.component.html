@@ -2,48 +2,43 @@
     <header>
 
         <div class="logo">
-            <img src="assets/svg/logo-r.svg" alt="Logo">
+            <img src="svg/logo-d.svg" alt="Logo" class="logo">
         </div>
 
-
         <nav class="barra-navegacion">
-            <button routerLink="/">Inicio</button>
-            <button routerLink="/afiliacion">Afiliación</button>
-            <button routerLink="/cuartelillo">Cuartelillo</button>
-            <button routerLink="/noticia">Noticias</button>
-            <button routerLink="/tienda">Tienda</button>
+            <button routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{ exact: true }">Inicio</button>
+            <button routerLink="/afiliacion" routerLinkActive="activo">Afiliación</button>
+            <button routerLink="/cuartelillo" routerLinkActive="activo">Cuartelillo</button>
+            <button routerLink="/noticia" routerLinkActive="activo">Noticias</button>
+            <button routerLink="/tienda" routerLinkActive="activo">Tienda</button>
         </nav>
 
-        <section>
-            <a *ngIf="esRol8" href="/gestionrol">
-                <p>
-                    Roles
-                </p>
-            </a>
+        <section class="navder">
+
+            <div class="perfil">
+                <a *ngIf="hayUsuario" href="/perfil">
+                    <img width="100" height="100" src="/png/usuario.png" alt="usuario" />
+                    <p>{{ obtenerNombreUsuario() }}</p>
+                </a>
+            </div>
 
             <div class="sesion">
+                <a *ngIf="esRol8" href="/gestionrol" id="link">
+                    <p>Gestionar roles</p>
+                </a>
 
-                <a *ngIf="haySesion()" href="/historial-compras">
+                <a *ngIf="haySesion()" href="/historial-compras" id="link">
                     <p>Historial de compras</p>
                 </a>
 
-
-                <!-- Si NO hay sesión, muestra el enlace a /acceso -->
-                <a *ngIf="!haySesion()" href="/acceso">
+                <a *ngIf="!haySesion()" href="/acceso" id="link">
                     <p>Registro</p>
-                </a>
-
-
-                <a *ngIf="hayUsuario" href="/perfil">
-                    <p *ngIf="haySesion()">
-                        Bienvenido, {{ obtenerNombreUsuario() }}
-                    </p>
                 </a>
             </div>
 
             <div class="notificaciones-container" *ngIf="haySesion()">
                 <button class="btn-bandeja" (click)="toggleNotificaciones()">
-                    📨
+                    <img src="png/noti.png" alt="Notificaciones">
                 </button>
 
                 <div class="popup-notificaciones" *ngIf="mostrarNotificaciones" (clickOutside)="cerrarNotificaciones()"
@@ -59,7 +54,9 @@
                     <p *ngIf="notificaciones.length === 0">No tienes notificaciones.</p>
                 </div>
             </div>
+
         </section>
+
     </header>
 
 

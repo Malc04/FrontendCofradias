@@ -86,7 +86,7 @@ export class PrincipalComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     const target = event.target as HTMLElement;
-    const clickedInside = target.closest('.notificaciones-container');
+    const clickedInside = target.closest('.notificaciones');
     if (!clickedInside) {
       this.cerrarNotificaciones();
     }

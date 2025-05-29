@@ -1,149 +1,126 @@
-main {
-  padding: 0;
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
-}
-
-header {
+/* Header ahora mucho más alto */
+.header {
   display: flex;
-  height: 14vh;
-  width: 100vw;
-  justify-content: space-around;
   align-items: center;
+  justify-content: space-between;
   background-color: #6B1E1E;
-  border-bottom: 1.5vh solid #1B1F5A;
+  /* Burdeos */
+  border-bottom: 10px solid #1B1F5A;
+  /* Azul mariano */
+  padding: 1rem 2rem;
+  height: 140px;
+  /* ≈ 2.5 veces más que antes */
+  box-sizing: border-box;
+  position: relative;
+  flex-wrap: nowrap;
 }
 
-.logo {
+/* Contenedores izquierdo y derecho para balancear la navbar centrada */
+.header .left,
+.header .right {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 17vw;
-}
-
-.logo img {
-  width: 6.5vw;
-}
-
-.barra-navegacion {
-  display: flex;
+  min-width: 140px;
+  width: 20vw;
+  /* ancho fijo para balancear */
+  flex-shrink: 0;
   justify-content: center;
-  align-items: center;
 }
 
-.barra-navegacion button {
-  margin: 2vw;
-  font-size: 1.25vw;
-  background-color: transparent;
-  border: none;
-  color: #C9A85C;
-  cursor: pointer;
+/* Logo queda dentro de left */
+.left .logo img {
+  height: 100px;
+  /* escala proporcional */
 }
 
-.barra-navegacion button.activo {
-  border-bottom: 0.25vh solid #C9A85C;
-  font-weight: bold;
+/* Zona usuario queda dentro right */
+.right {
+  gap: 1rem;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  font-size: 0.9rem;
 }
 
-.navder {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 17vw;
-}
-
-.perfil a {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.perfil a img {
-  width: auto;
-  height: 5vh;
-}
-
-.sesion {
-  margin-left: 1.25vw;
-}
-
-#link,
 .perfil a {
   text-decoration: none;
   color: #C9A85C;
-  font-size: 0.65vw;
-}
-
-#link p {
-  padding-left: 0.2vw;
-  border-left: 0.2vw solid #C9A85C;
-}
-
-.app {
   display: flex;
-  height: 75vh;
-  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.perfil img {
+  height: 60px;
+  margin-bottom: 0.1rem;
+}
+
+/* Navbar centrada */
+.navbar {
+  flex: 1;
+  display: flex;
   justify-content: center;
-  margin-top: 5vh;
+  gap: 2rem;
 }
 
-.cerrarsesion {
-  margin-left: 95vw;
-}
-
-.cerrarsesion button{
-  font-size: 0.6vw;
-}
-
-.notificaciones-container {
-  padding-left: 1vw;
-  position: relative;
-  display: inline-block;
-  z-index: 1;
-}
-
-.btn-bandeja {
-  position: relative;
-  background: transparent;
+.navbar button {
+  background: none;
   border: none;
-  font-size: 1.5rem;
+  color: #C9A85C;
+  font-size: 2rem;
+  font-weight: 500;
   cursor: pointer;
+  padding-bottom: 4px;
+  transition: all 0.2s ease;
+  margin: 1rem;
 }
 
-.btn-bandeja img {
-  width: 1vw;
+.navbar button.activo {
+  border-bottom: 3px solid #C9A85C;
+  font-weight: bold;
 }
 
-.badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: red;
-  color: white;
-  border-radius: 50%;
-  font-size: 0.75rem;
-  padding: 2px 6px;
+/* Sesion y enlaces */
+.sesion a {
+  text-decoration: none;
+  color: #C9A85C;
+  font-size: 0.9rem;
+  display: block;
+  white-space: nowrap;
 }
 
+/* Notificaciones */
+.notificaciones {
+  position: relative;
+}
+
+.btn-noti {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn-noti img {
+  height: 30px;
+}
+
+/* Popup notificaciones */
 .popup-notificaciones {
   position: absolute;
+  top: 110%;
+  /* justo debajo del botón */
   right: 0;
-  margin-top: 5px;
-  width: 250px;
-  max-height: 300px;
-  overflow-y: auto;
-  background: white;
+  width: 280px;
+  background-color: white;
   border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  z-index: 100;
-  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding: 1rem;
+  z-index: 2000;
 }
 
-.popup-notificaciones h4 {
-  margin-top: 0;
+.popup-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -152,24 +129,83 @@ header {
 .cerrar-btn {
   background: transparent;
   border: none;
-  cursor: pointer;
-  font-weight: bold;
   font-size: 1rem;
-  color: #999;
-}
-
-.cerrar-btn:hover {
-  color: #333;
+  color: #888;
+  cursor: pointer;
 }
 
 .popup-notificaciones ul {
   list-style: none;
+  margin-top: 1rem;
   padding-left: 0;
-  margin: 0;
+  max-height: 320px;
+  overflow-y: auto;
 }
 
 .popup-notificaciones li {
-  margin-bottom: 10px;
+  padding: 0.5rem 0;
   border-bottom: 1px solid #eee;
-  padding-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+/* App body */
+.app {
+  padding: 2rem;
+  min-height: calc(90vh - 145px);
+  /* resta header */
+  overflow-y: auto;
+}
+
+/* Cerrar sesión */
+.cerrarsesion {
+  text-align: right;
+  padding: 1rem 2rem;
+}
+
+.cerrarsesion button {
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: 1.5px solid #C9A85C;
+  color: #C9A85C;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.cerrarsesion button:hover {
+  background-color: #C9A85C;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .left,
+  .right {
+    min-width: auto;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .navbar {
+    order: 3;
+    width: 100%;
+    gap: 1.25rem;
+  }
+
+  .zona-usuario {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .cerrarsesion {
+    text-align: center;
+    padding: 1rem;
+  }
 }

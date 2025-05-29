@@ -7,15 +7,22 @@
         <table class="donativos-table">
             <thead>
                 <tr>
-                    <th *ngIf="esAdmin">Usuario</th>
-                    <th *ngIf="esAdmin">Fecha</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
                     <th>Monto</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let d of donativos">
-                    <td *ngIf="esAdmin">{{ nombreUsuario(d.idUsuario) }}</td>
-                    <td *ngIf="esAdmin">{{ d.fecha | date:'dd MMMM yyyy' }}</td>
+                    <td>
+                        <ng-container *ngIf="esAdmin; else anonimo">
+                            {{ nombreUsuario(d.idUsuario) }}
+                        </ng-container>
+                        <ng-template #anonimo>
+                            Donante anónimo
+                        </ng-template>
+                    </td>
+                    <td>{{ d.fecha | date:'dd MMMM yyyy' }}</td>
                     <td>{{ d.montoDonativo | currency:'EUR' }}</td>
                 </tr>
             </tbody>

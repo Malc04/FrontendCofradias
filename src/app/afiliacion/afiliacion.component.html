@@ -2,50 +2,72 @@
 
     <div *ngIf="usuarioId; else noRegistrado">
 
-        <div *ngIf="!estaAfiliado(); else yaAfiliado">
+        <section *ngIf="!estaAfiliado(); else yaAfiliado" class="afiliacion-secciones">
 
-            <div class="nuevoafiliado">
+            <article class="nuevoafiliado" aria-labelledby="tituloNuevoAfiliado">
+                <h3 id="tituloNuevoAfiliado">Formulario de afiliación</h3>
+                <form (ngSubmit)="afiliar()" #form="ngForm" novalidate>
 
-                <h3>Formulario de afiliación</h3>
+                    <div class="form-group">
+                        <label for="nombreCompleto">Nombre completo:</label>
+                        <input id="nombreCompleto" type="text" [(ngModel)]="hermano.nombreCompleto"
+                            name="nombreCompleto" required aria-required="true" />
+                    </div>
 
+                    <div class="form-group">
+                        <label for="dni">DNI:</label>
+                        <input id="dni" type="text" [(ngModel)]="hermano.dni" name="dni" required
+                            aria-required="true" />
+                    </div>
 
-                <form (ngSubmit)="afiliar()" #form="ngForm">
-                    <label>Nombre completo:</label>
-                    <input type="text" [(ngModel)]="hermano.nombreCompleto" name="nombreCompleto" required />
+                    <div class="form-group">
+                        <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                        <input id="fechaNacimiento" type="date" [(ngModel)]="hermano.fechaNacimiento"
+                            name="fechaNacimiento" required aria-required="true" />
+                    </div>
 
-                    <label>DNI:</label>
-                    <input type="text" [(ngModel)]="hermano.dni" name="dni" required />
+                    <div class="form-group">
+                        <label for="domiciliacionBancaria">Domiciliación bancaria:</label>
+                        <input id="domiciliacionBancaria" type="text" [(ngModel)]="hermano.domiciliacionBancaria"
+                            name="domiciliacionBancaria" required aria-required="true" />
+                    </div>
 
-                    <label>Fecha de nacimiento:</label>
-                    <input type="date" [(ngModel)]="hermano.fechaNacimiento" name="fechaNacimiento" required />
+                    <button type="submit" [disabled]="form.invalid">Afiliarse</button>
 
-                    <label>Domiciliación bancaria:</label>
-                    <input type="text" [(ngModel)]="hermano.domiciliacionBancaria" name="domiciliacionBancaria"
-                        required />
-
-                    <button type="submit">Afiliarse</button>
-                    <p *ngIf="error">{{ error }}</p>
+                    <p *ngIf="error" class="error-message" role="alert" aria-live="assertive">{{ error }}</p>
                 </form>
-            </div>
-            <div class="vincularafiliado">
+            </article>
 
-                <h3>Vincular Hermano Existente</h3>
-                <div>
-                    <label for="numeroHermano">Número de Hermano:</label>
-                    <input id="numeroHermano" [(ngModel)]="numeroHermano" />
+            <aside class="vincularafiliado" aria-labelledby="tituloVincularHermano">
+                <h3 id="tituloVincularHermano">Vincular Hermano Existente</h3>
 
-                    <label for="dniHermano">DNI:</label>
-                    <input id="dniHermano" [(ngModel)]="dniHermano" type="text" />
+                <form (ngSubmit)="vincularHermanoExistente()" novalidate>
+                    <div class="form-group">
+                        <label for="numeroHermano">Número de Hermano:</label>
+                        <input id="numeroHermano" [(ngModel)]="numeroHermano" name="numeroHermano" type="text" />
+                    </div>
 
-                    <button (click)="vincularHermanoExistente()">Vincular Hermano</button>
-                </div>
-                <p *ngIf="errorVincular" style="color: red;">{{ errorVincular }}</p>
-            </div>
-        </div>
+                    <div class="form-group">
+                        <label for="dniHermano">DNI:</label>
+                        <input id="dniHermano" [(ngModel)]="dniHermano" name="dniHermano" type="text" />
+                    </div>
 
-        <p *ngIf="exito">{{ exito }}</p>
+                    <button type="submit">Vincular Hermano</button>
 
-        <p *ngIf="exitoVincular" style="color: green;">{{ exitoVincular }}</p>
+                    <p *ngIf="errorVincular" class="error-message" role="alert" aria-live="assertive">{{ errorVincular
+                        }}</p>
+                </form>
+            </aside>
+
+        </section>
+
+        <section *ngIf="exito" class="mensaje-exito" role="status" aria-live="polite">
+            <p>{{ exito }}</p>
+        </section>
+
+        <section *ngIf="exitoVincular" class="mensaje-exito" role="status" aria-live="polite">
+            <p>{{ exitoVincular }}</p>
+        </section>
 
         <ng-template #yaAfiliado>
             <p class="mensaje">Ya estás afiliado a la hermandad.</p>
@@ -56,4 +78,5 @@
     <ng-template #noRegistrado>
         <p class="mensaje">Debes estar registrado para afiliarte.</p>
     </ng-template>
+
 </main>

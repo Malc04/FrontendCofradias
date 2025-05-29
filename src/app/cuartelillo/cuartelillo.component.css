@@ -1,12 +1,3 @@
-:root {
-  --marfil: #FDF8F2;
-  --burdeos: #6B1E1E;
-  --oro-viejo: #C9A85C;
-  --azul-mariano: #1B1F5A;
-  --texto: #2B2B2B;
-  --fondo-claro: #EFE9E1;
-}
-
 .donativos-container {
   max-width: 800px;
   margin: 2rem auto;
@@ -15,14 +6,14 @@
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   font-family: system-ui, sans-serif;
-  color: var(--texto);
+  color: #2B2B2B;
 }
 
 .donativos-header h2 {
   font-size: 1.75rem;
   margin-bottom: 1.2rem;
-  color: var(--burdeos);
-  border-bottom: 2px solid var(--burdeos);
+  color: #6B1E1E;
+  border-bottom: 2px solid #6B1E1E;
   padding-bottom: 0.3rem;
 }
 
@@ -35,11 +26,11 @@
   width: 100%;
   border-collapse: collapse;
   min-width: 400px;
-  border: 1px solid var(--fondo-claro);
+  border: 1px solid #EFE9E1;
 }
 
 .donativos-table thead {
-  background-color: var(--fondo-claro);
+  background-color: #EFE9E1;
 }
 
 .donativos-table th,
@@ -50,22 +41,22 @@
 }
 
 .donativos-table th {
-  color: var(--azul-mariano);
+  color: #1B1F5A;
   font-weight: 600;
 }
 
 .donativos-table tbody tr:nth-child(even) {
-  background-color: var(--marfil);
+  background-color: #FDF8F2;
 }
 
 .donativos-total {
   font-size: 1.1rem;
   margin: 1.5rem 0;
-  color: var(--texto);
+  color: #2B2B2B;
 }
 
 .donativos-total strong {
-  color: var(--azul-mariano);
+  color: #1B1F5A;
 }
 
 .donativos-form {
@@ -75,7 +66,7 @@
 .donativos-form h3 {
   font-size: 1.25rem;
   margin-bottom: 0.75rem;
-  color: var(--burdeos);
+  color: #6B1E1E;
 }
 
 .form-group {
@@ -95,7 +86,7 @@ input[type="number"] {
 
 button {
   padding: 0.6rem 1.2rem;
-  background-color: var(--oro-viejo);
+  background-color: #C9A85C;
   color: white;
   border: none;
   border-radius: 6px;
@@ -111,7 +102,7 @@ button:hover {
 .no-access {
   text-align: center;
   font-size: 1rem;
-  color: var(--burdeos);
+  color: #6B1E1E;
   margin-top: 2rem;
 }
 

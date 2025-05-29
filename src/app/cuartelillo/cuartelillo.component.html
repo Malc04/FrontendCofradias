@@ -1,9 +1,10 @@
-<main>
-    <div *ngIf="usuarioId; else noRegistrado">
-
+<main class="donativos-container" *ngIf="usuarioId; else noRegistrado">
+    <section class="donativos-header">
         <h2>Donativos</h2>
+    </section>
 
-        <table>
+    <section class="donativos-table-wrapper">
+        <table class="donativos-table">
             <thead>
                 <tr>
                     <th *ngIf="esAdmin">Usuario</th>
@@ -19,19 +20,21 @@
                 </tr>
             </tbody>
         </table>
+    </section>
 
+    <section class="donativos-total">
         <p><strong>Total donado:</strong> {{ montoTotal | currency:'EUR' }}</p>
+    </section>
 
-
-        <div>
-            <h3>Nuevo donativo</h3>
-            <input type="number" [(ngModel)]="nuevoMonto" placeholder="Monto" />
+    <section class="donativos-form">
+        <h3>Nuevo donativo</h3>
+        <div class="form-group">
+            <input type="number" [(ngModel)]="nuevoMonto" placeholder="Monto en EUR" aria-label="Monto del donativo" />
             <button (click)="agregarDonativo()">Donar</button>
         </div>
-    </div>
-
-    <ng-template #noRegistrado>
-        <p>Debes estar registrado para hacer una donación.</p>
-    </ng-template>
-
+    </section>
 </main>
+
+<ng-template #noRegistrado>
+    <p class="no-access">Debes estar registrado para hacer una donación.</p>
+</ng-template>

@@ -73,6 +73,7 @@ header {
 .perfil a {
   text-decoration: none;
   color: #C9A85C;
+  font-size: 0.65vw;
 }
 
 #link p {
@@ -90,6 +91,10 @@ header {
 
 .cerrarsesion {
   margin-left: 95vw;
+}
+
+.cerrarsesion button{
+  font-size: 0.6vw;
 }
 
 .notificaciones-container {

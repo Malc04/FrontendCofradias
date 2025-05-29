@@ -5,6 +5,10 @@
         <div *ngIf="!estaAfiliado(); else yaAfiliado">
 
             <div class="nuevoafiliado">
+
+                <h3>Formulario de afiliación</h3>
+
+
                 <form (ngSubmit)="afiliar()" #form="ngForm">
                     <label>Nombre completo:</label>
                     <input type="text" [(ngModel)]="hermano.nombreCompleto" name="nombreCompleto" required />
@@ -28,7 +32,7 @@
                 <h3>Vincular Hermano Existente</h3>
                 <div>
                     <label for="numeroHermano">Número de Hermano:</label>
-                    <input id="numeroHermano" [(ngModel)]="numeroHermano" type="number" />
+                    <input id="numeroHermano" [(ngModel)]="numeroHermano" />
 
                     <label for="dniHermano">DNI:</label>
                     <input id="dniHermano" [(ngModel)]="dniHermano" type="text" />
@@ -44,12 +48,12 @@
         <p *ngIf="exitoVincular" style="color: green;">{{ exitoVincular }}</p>
 
         <ng-template #yaAfiliado>
-            <p>Ya estás afiliado a la hermandad.</p>
+            <p class="mensaje">Ya estás afiliado a la hermandad.</p>
         </ng-template>
 
     </div>
 
     <ng-template #noRegistrado>
-        <p>Debes estar registrado para afiliarte.</p>
+        <p class="mensaje">Debes estar registrado para afiliarte.</p>
     </ng-template>
 </main>

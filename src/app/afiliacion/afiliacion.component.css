@@ -1,0 +1,90 @@
+main {
+    width: 60vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main div div {
+    display: flex;
+}
+
+.nuevoafiliado {
+    width: 25vw;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vincularafiliado {
+    width: 25vw;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nuevoafiliado h3,
+.vincularafiliado h3 {
+    font-size: 1vw;
+}
+
+.nuevoafiliado form,
+.vincularafiliado div {
+    display: flex;
+    flex-direction: column;
+}
+
+form label,
+form input {
+    font-size: 0.75vw;
+}
+
+div label,
+div input {
+    font-size: 0.75vw;
+}
+
+div button {
+    margin-top: 1vh;
+    width: 7vw;
+    font-size: 0.7vw;
+    margin-left: 1.2vw;
+    border: 0.25vh solid #C9A85C;
+    border-radius: 0.2vw;
+    background-color: #6B1E1E;
+    color: #C9A85C;
+}
+
+div label {
+    margin-bottom: 0.5vh;
+}
+
+div input {
+    margin-bottom: 0.5vh;
+}
+
+form label {
+    margin-bottom: 0.5vh;
+}
+
+form input {
+    margin-bottom: 0.5vh;
+}
+
+form button {
+    margin-top: 1vh;
+    width: 5vw;
+    font-size: 0.7vw;
+    margin-left: 2vw;
+    border: 0.25vh solid #C9A85C;
+    border-radius: 0.2vw;
+    background-color: #6B1E1E;
+    color: #C9A85C;
+}
+
+.mensaje {
+    font-size: 1vw;
+}

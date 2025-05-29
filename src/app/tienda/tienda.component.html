@@ -1,44 +1,66 @@
-<main class="tienda-contenedor">
+<main class="tienda-contenedor" role="main" aria-label="Sección de tienda">
     <h2>Tienda</h2>
 
-    <!-- Icono carrito -->
-    <!-- Solo mostrar si hay sesión -->
-    <button *ngIf="sesionIniciada" (click)="toggleCarrito()" class="carrito-icono">
-        🛒 Ver pedido
+    <!-- Botón carrito con icono -->
+    <button *ngIf="sesionIniciada" (click)="toggleCarrito()" class="carrito-icono" type="button"
+        [attr.aria-expanded]="mostrarCarrito" aria-controls="carrito-lista" aria-label="Ver pedido en carrito">
+        <img src="png/carrito.png" alt="" class="icono-carrito-img" aria-hidden="true" />
+        <span class="texto-carrito">Ver pedido</span>
+        <span class="cantidad-carrito" aria-live="polite" aria-atomic="true">{{ carrito.length }}</span>
     </button>
 
     <!-- Carrito desplegable -->
-    <div *ngIf="sesionIniciada && mostrarCarrito" class="carrito-desplegable">
+    <section *ngIf="sesionIniciada && mostrarCarrito" class="carrito-desplegable" id="carrito-lista" aria-live="polite"
+        aria-relevant="additions removals">
         <h3>Tu pedido</h3>
-        <ul>
-            <li *ngFor="let item of carrito">
-                {{ item.producto.nombre }} - {{ item.producto.precio | currency }} x {{ item.cantidad }}
-                <button (click)="reducirCantidad(item.producto.id)">➖</button>
+
+        <ul *ngIf="carrito.length > 0; else carritoVacio">
+            <li *ngFor="let item of carrito" class="carrito-item">
+                <span class="carrito-nombre">{{ item.producto.nombre }}</span>
+                <span class="carrito-precio">{{ item.producto.precio | currency:'EUR' }}</span>
+                <span class="carrito-cantidad">x {{ item.cantidad }}</span>
+                <button attr.aria-label="Reducir cantidad de {{ item.producto.nombre }}"
+                    (click)="reducirCantidad(item.producto.id)" class="carrito-reducir-btn" type="button">
+                    <img src="png/menos.png" alt="" class="icono-menos" aria-hidden="true" />
+                </button>
             </li>
         </ul>
 
-        <button (click)="finalizarCompra()" [disabled]="carrito.length === 0">Finalizar compra</button>
-    </div>
+        <ng-template #carritoVacio>
+            <p class="carrito-vacio">Tu carrito está vacío.</p>
+        </ng-template>
+
+        <button (click)="finalizarCompra()" [disabled]="carrito.length === 0" class="btn-finalizar-compra"
+            type="button">
+            Finalizar compra
+        </button>
+    </section>
 
     <!-- Lista de productos -->
-    <div class="producto-grid">
-        <div *ngFor="let producto of productos" class="producto-card">
-            <img [src]="producto.fotoUrl" alt="{{ producto.nombre }}" class="producto-foto" />
+    <section class="producto-grid" aria-label="Lista de productos disponibles">
+        <article *ngFor="let producto of productos" class="producto-card" tabindex="0">
+            <img [src]="producto.fotoUrl" alt="Foto de {{ producto.nombre }}" class="producto-foto" loading="lazy"
+                width="220" height="140" />
             <h4>{{ producto.nombre }}</h4>
-            <p>{{ producto.precio | currency:'EUR' }}</p>
-            <button (click)="toggleDetalle(producto.id)">
+            <p class="producto-precio">{{ producto.precio | currency:'EUR' }}</p>
+            <button (click)="toggleDetalle(producto.id)" [attr.aria-expanded]="productoExpandido === producto.id"
+                [attr.aria-controls]="'detalle-' + producto.id" class="btn-detalle" type="button">
                 {{ productoExpandido === producto.id ? 'Ocultar' : 'Ver detalles' }}
             </button>
 
             <!-- Detalles -->
-            <div *ngIf="productoExpandido === producto.id" class="producto-detalle">
+            <div *ngIf="productoExpandido === producto.id" class="producto-detalle" [id]="'detalle-' + producto.id"
+                role="region" aria-live="polite">
                 <p>{{ producto.descripcion }}</p>
-                <p *ngIf="producto.stock === 0" class="sin-stock">Producto sin stock</p>
+                <p *ngIf="producto.stock === 0" class="sin-stock" aria-live="assertive">
+                    Producto sin stock
+                </p>
                 <p *ngIf="producto.stock > 0">Stock disponible</p>
-                <button *ngIf="sesionIniciada" [disabled]="producto.stock === 0" (click)="anadirAlCarrito(producto)">
+                <button *ngIf="sesionIniciada" [disabled]="producto.stock === 0" (click)="anadirAlCarrito(producto)"
+                    class="btn-anadir" type="button" [attr.aria-label]="'Añadir ' + producto.nombre + ' al pedido'">
                     Añadir al pedido
                 </button>
             </div>
-        </div>
-    </div>
+        </article>
+    </section>
 </main>

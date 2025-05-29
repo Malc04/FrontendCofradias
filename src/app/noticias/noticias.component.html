@@ -1,52 +1,73 @@
-<!-- LISTADO DE NOTICIAS -->
-<div *ngIf="!noticiaSeleccionada">
-    <h2>Noticias</h2>
+<main class="noticias-container">
 
-    <div class="noticia-resumen" *ngFor="let noticia of noticias" (click)="seleccionarNoticia(noticia)">
-        <img [src]="noticia.fotoUrl" alt="Imagen noticia" width="200">
-        <h3>{{ noticia.titulo }}</h3>
-        <p><strong>Fecha:</strong> {{ noticia.fechaPublicacion | date:'longDate' }}</p>
-    </div>
+    <header class="noticias-header">
+        <h2>Noticias</h2>
+
+        <!-- Botón para mostrar formulario de creación, solo admins -->
+        <button *ngIf="esAdmin()" (click)="mostrarFormularioCreacion = !mostrarFormularioCreacion"
+            class="btn-crear-noticia">
+            {{ mostrarFormularioCreacion ? 'Cancelar' : 'Crear noticia' }}
+        </button>
+    </header>
 
     <!-- FORMULARIO PARA CREAR NOTICIA -->
-    <div *ngIf="esAdmin()">
-        <h3>Crear nueva noticia</h3>
-        <form (ngSubmit)="crearNoticia()">
-            <input type="text" [(ngModel)]="nuevaNoticia.titulo" name="titulo" placeholder="Título" required>
-            <textarea [(ngModel)]="nuevaNoticia.contenido" name="contenido" placeholder="Contenido" required></textarea>
-            <input type="text" [(ngModel)]="nuevaNoticia.fotoUrl" name="fotoUrl" placeholder="URL de la imagen"
-                required>
+    <section *ngIf="esAdmin() && mostrarFormularioCreacion" class="form-crear-noticia">
+        <h3>Nueva noticia</h3>
+        <form (ngSubmit)="crearNoticia()" #form="ngForm">
+            <div class="form-group">
+                <input type="text" [(ngModel)]="nuevaNoticia.titulo" name="titulo" placeholder="Título" required />
+            </div>
+            <div class="form-group">
+                <textarea [(ngModel)]="nuevaNoticia.contenido" name="contenido" placeholder="Contenido"
+                    required></textarea>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="nuevaNoticia.fotoUrl" name="fotoUrl" placeholder="URL de la imagen"
+                    required />
+            </div>
 
             <!-- SELECTOR DE ROL PARA NOTIFICAR -->
-            <div *ngIf="esAdmin()">
+            <div *ngIf="rolSeleccionadoId !== undefined" class="form-group rol-notificacion">
                 <label>Enviar notificación a rol:</label>
                 <select [(ngModel)]="rolSeleccionadoId" name="rolSeleccionadoId">
                     <option value="">-- Selecciona un rol (opcional) --</option>
                     <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombreRol }}</option>
                 </select>
-
-                <div *ngIf="rolSeleccionadoId">
-                    <input type="text" [(ngModel)]="tipoNoticia" name="tipoNoticia" placeholder="Tipo de noticia"
-                        required />
-                </div>
             </div>
 
-            <button type="submit">Publicar</button>
+            <div *ngIf="rolSeleccionadoId" class="form-group">
+                <input type="text" [(ngModel)]="tipoNoticia" name="tipoNoticia" placeholder="Tipo de noticia"
+                    required />
+            </div>
+
+            <button type="submit" [disabled]="!form.form.valid" class="btn-publicar">Publicar</button>
         </form>
-    </div>
-</div>
+    </section>
 
-<!-- DETALLE DE UNA NOTICIA -->
-<div *ngIf="noticiaSeleccionada">
-    <button (click)="volverAListado()">← Volver</button>
-    <h2>{{ noticiaSeleccionada.titulo }}</h2>
-    <img [src]="noticiaSeleccionada.fotoUrl" alt="Imagen" width="300">
-    <p><strong>Fecha:</strong> {{ noticiaSeleccionada.fechaPublicacion | date:'longDate' }}</p>
-    <p><strong>Autor:</strong> {{ getNombreAutor(noticiaSeleccionada.idUsuario) }}</p>
-    <p>{{ noticiaSeleccionada.contenido }}</p>
+    <!-- LISTADO DE NOTICIAS -->
+    <section *ngIf="!noticiaSeleccionada" class="listado-noticias">
+        <div class="noticia-resumen" *ngFor="let noticia of noticias" (click)="seleccionarNoticia(noticia)">
+            <img [src]="noticia.fotoUrl" alt="Imagen noticia" />
+            <div class="noticia-texto">
+                <h3>{{ noticia.titulo }}</h3>
+                <p><strong>Fecha:</strong> {{ noticia.fechaPublicacion | date:'longDate' }}</p>
+            </div>
+        </div>
+    </section>
 
-    <!-- Botón de eliminación SOLO para admins -->
-    <div *ngIf="esAdmin()">
-        <button (click)="eliminarNoticia(noticiaSeleccionada.id)">🗑️ Eliminar noticia</button>
-    </div>
-</div>
+    <!-- DETALLE DE UNA NOTICIA -->
+    <section *ngIf="noticiaSeleccionada" class="detalle-noticia">
+        <button (click)="volverAListado()" class="btn-volver">← Volver</button>
+        <h2>{{ noticiaSeleccionada.titulo }}</h2>
+        <img [src]="noticiaSeleccionada.fotoUrl" alt="Imagen noticia" />
+        <p><strong>Fecha:</strong> {{ noticiaSeleccionada.fechaPublicacion | date:'longDate' }}</p>
+        <p><strong>Autor:</strong> {{ getNombreAutor(noticiaSeleccionada.idUsuario) }}</p>
+        <p>{{ noticiaSeleccionada.contenido }}</p>
+
+        <!-- Botón de eliminación SOLO para admins -->
+        <div *ngIf="esAdmin()" class="eliminar-noticia">
+            <button (click)="eliminarNoticia(noticiaSeleccionada.id)" class="btn-eliminar">🗑️ Eliminar noticia</button>
+        </div>
+    </section>
+
+</main>

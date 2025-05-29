@@ -20,6 +20,8 @@ export class NoticiasComponent implements OnInit {
   noticias: Noticia[] = [];
   usuarios: Usuario[] = [];
   noticiaSeleccionada: Noticia | null = null;
+  mostrarFormularioCreacion = false;
+
 
   roles: Rol[] = [];
   rolSeleccionadoId: string = '';
@@ -56,9 +58,13 @@ export class NoticiasComponent implements OnInit {
 
   cargarNoticias() {
     this.noticiaService.getNoticias().subscribe(data => {
-      this.noticias = data;
+      this.noticias = data.sort((a, b) => {
+        // Convertimos a fechas para comparar y ordenamos de más nueva a más antigua
+        return new Date(b.fechaPublicacion).getTime() - new Date(a.fechaPublicacion).getTime();
+      });
     });
   }
+
 
   seleccionarNoticia(noticia: Noticia) {
     this.noticiaSeleccionada = noticia;

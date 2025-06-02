@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Hermano } from '../../models/Hermano/hermano'; // ajusta ruta si es necesario
+import { Hermano } from '../../models/Hermano/hermano';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class HermanoService {
   
 
   getHermanos(): Observable<Hermano[]> {
-    return this.http.get<Hermano[]>(this.apiUrl); // Usa tu endpoint real
+    return this.http.get<Hermano[]>(this.apiUrl);
   }
   
 

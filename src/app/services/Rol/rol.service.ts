@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class RolService {
   private baseUrl = 'http://localhost:8080/api/roles';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   obtenerRoles(): Observable<Rol[]> {
     return this.http.get<Rol[]>(this.baseUrl);

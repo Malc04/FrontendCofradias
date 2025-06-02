@@ -1,1 +1,46 @@
-<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FMadrid&showPrint=0&src=ZXMuc3BhaW4jaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230B8043" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+<main class="inicio-contenedor" role="main">
+    <section class="bienvenida">
+        <h2>Bienvenidos a la Hermandad</h2>
+        <p>Consulta nuestras actividades, eventos y formas de contacto.</p>
+    </section>
+
+    <section class="contenido-grid">
+        <!-- Calendario -->
+        <div class="bloque-calendario">
+            <h3>Calendario</h3>
+            <iframe
+                src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FMadrid&showPrint=0&src=ZXMuc3BhaW4jaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230B8043"
+                width="100%" height="675" frameborder="0" scrolling="no" title="Calendario de Google"></iframe>
+        </div>
+
+        <!-- Carrusel -->
+        <div class="bloque-carrusel">
+            <h3>Galería</h3>
+            <div class="carrusel-principal">
+                <img [src]="imagenSeleccionada" alt="Imagen destacada" class="imagen-principal" />
+                <div class="miniaturas">
+                    <img *ngFor="let img of imagenes" [src]="img" (click)="seleccionarImagen(img)"
+                        [class.activa]="img === imagenSeleccionada" alt="Miniatura" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario -->
+    <section class="bloque-formulario">
+        <button class="toggle-form-btn" (click)="mostrarFormulario = !mostrarFormulario" type="button">
+            {{ mostrarFormulario ? 'Ocultar sugerencias' : 'Deja tus sugerencias' }}
+        </button>
+
+        <div *ngIf="mostrarFormulario" class="formulario-iframe">
+            <h2>Formulario de Sugerencias</h2>
+            <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSegXYtBxHTfsTwYfmZi6Xk1-3ezDe1_ZDOFX1aaVQUOLFHX3g/viewform?embedded=true"
+                width="100%" height="750" frameborder="0" marginheight="0" marginwidth="0"
+                style="border: 1px solid #C9A85C; border-radius: 8px;">
+                Cargando…
+            </iframe>
+        </div>
+    </section>
+
+</main>

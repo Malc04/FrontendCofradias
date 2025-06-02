@@ -14,6 +14,7 @@ import * as bcrypt from 'bcryptjs';
   styleUrl: './acceso.component.css'
 })
 export class AccesoComponent {
+  mostrarRegistro: boolean = false;
   nuevoUsuario: Usuario = {
     nombreUsuario: '',
     email: '',
@@ -21,7 +22,7 @@ export class AccesoComponent {
   };
 
   loginUsuario = {
-    login: '', // puede ser nombreUsuario o email
+    login: '',
     contrasenya: ''
   };
 

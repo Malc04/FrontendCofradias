@@ -52,7 +52,6 @@ export class ResumenCompraComponent implements OnInit {
   }
 
 
-  // Escuchamos el evento de volver atrás en el navegador
   @HostListener('window:popstate', ['$event'])
   onPopState(event: any) {
     localStorage.removeItem('carrito');

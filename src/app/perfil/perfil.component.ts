@@ -44,7 +44,6 @@ export class PerfilComponent implements OnInit {
         nombreUsuario: this.usuario.nombreUsuario
       }).subscribe({
         next: (usuarioActualizado) => {
-          // Guarda el nuevo nombre de usuario en localStorage
           localStorage.setItem('nombreUsuario', usuarioActualizado.nombreUsuario);
           alert('Usuario actualizado correctamente');
         },

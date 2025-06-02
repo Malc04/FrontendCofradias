@@ -1,30 +1,108 @@
-main {
-    padding: 0;
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: aqua;
+.pantalla-acceso {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 90vh;
+    padding-top: 6rem;
+    background-color: #fdfdfd;
 }
 
-.form {
-    display: flex;
-    background-color: wheat;
-    height: 100%;
-    width: 35%;
+.volver-inicio {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    color: #6B1E1E;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    z-index: 1000;
 }
 
-.registro {
+.logo-hermandad {
+    width: 180px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.tabs-selector {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.tabs-selector button {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    border: 1px solid #6B1E1E;
     background-color: white;
-    width: 20%;
+    color: #6B1E1E;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.iniciosesion {
-    background-color: gray;
-    width: 20%;
+.tabs-selector button.active,
+.tabs-selector button:hover {
+    background-color: #6B1E1E;
+    color: white;
 }
 
-.hermandad {
-    background-color: blueviolet;
-    width: 25%;
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.formulario h2 {
+    margin-bottom: 1.5rem;
+    color: #6B1E1E;
+    text-align: center;
+}
+
+.formulario label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 500;
+    color: #444;
+}
+
+.formulario input {
+    width: 95%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.formulario button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1.5rem;
+    background-color: #6B1E1E;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.formulario button:hover {
+    background-color: #521515;
+}
+
+.mensaje-exito {
+    color: green;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.mensaje-error {
+    color: red;
+    margin-top: 1rem;
+    text-align: center;
 }

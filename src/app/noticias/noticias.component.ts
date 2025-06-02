@@ -59,7 +59,6 @@ export class NoticiasComponent implements OnInit {
   cargarNoticias() {
     this.noticiaService.getNoticias().subscribe(data => {
       this.noticias = data.sort((a, b) => {
-        // Convertimos a fechas para comparar y ordenamos de más nueva a más antigua
         return new Date(b.fechaPublicacion).getTime() - new Date(a.fechaPublicacion).getTime();
       });
     });
@@ -98,7 +97,6 @@ export class NoticiasComponent implements OnInit {
           fotoUrl: ''
         };
 
-        // Si se ha seleccionado un rol para enviar notificaciones
         if (this.rolSeleccionadoId && this.tipoNoticia) {
           const usuariosFiltrados = this.usuarios.filter(
             u => u.idRol === parseInt(this.rolSeleccionadoId)
@@ -125,7 +123,6 @@ export class NoticiasComponent implements OnInit {
         }
 
 
-        // Reset
         this.rolSeleccionadoId = '';
         this.tipoNoticia = '';
       });
@@ -133,10 +130,6 @@ export class NoticiasComponent implements OnInit {
       alert('Completa todos los campos para crear la noticia.');
     }
   }
-
-
-
-
 
   esAdmin(): boolean {
     return this.idRol === '8';
@@ -152,7 +145,7 @@ export class NoticiasComponent implements OnInit {
       this.noticiaService.eliminarNoticia(id).subscribe(() => {
         alert('Noticia eliminada');
         this.cargarNoticias();
-        this.noticiaSeleccionada = null; // por si estábamos viendo una en detalle
+        this.noticiaSeleccionada = null;
       });
     }
   }

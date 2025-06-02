@@ -3,14 +3,12 @@
     <header class="noticias-header">
         <h2>Noticias</h2>
 
-        <!-- Botón para mostrar formulario de creación, solo admins -->
         <button *ngIf="esAdmin()" (click)="mostrarFormularioCreacion = !mostrarFormularioCreacion"
             class="btn-crear-noticia">
             {{ mostrarFormularioCreacion ? 'Cancelar' : 'Crear noticia' }}
         </button>
     </header>
 
-    <!-- FORMULARIO PARA CREAR NOTICIA -->
     <section *ngIf="esAdmin() && mostrarFormularioCreacion" class="form-crear-noticia">
         <h3>Nueva noticia</h3>
         <form (ngSubmit)="crearNoticia()" #form="ngForm">
@@ -26,7 +24,6 @@
                     required />
             </div>
 
-            <!-- SELECTOR DE ROL PARA NOTIFICAR -->
             <div *ngIf="rolSeleccionadoId !== undefined" class="form-group rol-notificacion">
                 <label>Enviar notificación a rol:</label>
                 <select [(ngModel)]="rolSeleccionadoId" name="rolSeleccionadoId">
@@ -44,7 +41,6 @@
         </form>
     </section>
 
-    <!-- LISTADO DE NOTICIAS -->
     <section *ngIf="!noticiaSeleccionada" class="listado-noticias">
         <div class="noticia-resumen" *ngFor="let noticia of noticias" (click)="seleccionarNoticia(noticia)">
             <img [src]="noticia.fotoUrl" alt="Imagen noticia" />
@@ -55,7 +51,6 @@
         </div>
     </section>
 
-    <!-- DETALLE DE UNA NOTICIA -->
     <section *ngIf="noticiaSeleccionada" class="detalle-noticia">
         <button (click)="volverAListado()" class="btn-volver">← Volver</button>
         <h2>{{ noticiaSeleccionada.titulo }}</h2>
@@ -64,7 +59,6 @@
         <p><strong>Autor:</strong> {{ getNombreAutor(noticiaSeleccionada.idUsuario) }}</p>
         <p>{{ noticiaSeleccionada.contenido }}</p>
 
-        <!-- Botón de eliminación SOLO para admins -->
         <div *ngIf="esAdmin()" class="eliminar-noticia">
             <button (click)="eliminarNoticia(noticiaSeleccionada.id)" class="btn-eliminar">🗑️ Eliminar noticia</button>
         </div>

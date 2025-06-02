@@ -1,0 +1,107 @@
+.volver-inicio {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    color: #6B1E1E;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    z-index: 1000;
+}
+
+.volver-inicio:hover {
+    color: #521515;
+}
+
+.pantalla-resumen {
+    max-width: 900px;
+    margin: 5rem auto 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    text-align: left;
+}
+
+.pantalla-resumen h2 {
+    text-align: center;
+    color: #6B1E1E;
+    margin-bottom: 2rem;
+}
+
+.producto-box {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fafafa;
+    transition: box-shadow 0.3s;
+}
+
+.producto-box:hover {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.producto-contenido {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.producto-img {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+.producto-info {
+    flex: 1;
+}
+
+.producto-info h3 {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.producto-info p {
+    margin: 0.2rem 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+hr {
+    margin-top: 1rem;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+.total {
+    text-align: right;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: #000;
+}
+
+.total span {
+    font-weight: bold;
+    color: #6B1E1E;
+}
+
+.btn-comprar {
+    display: block;
+    margin: 2rem auto 0 auto;
+    padding: 0.75rem 2.5rem;
+    font-size: 1.1rem;
+    background-color: #6B1E1E;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-comprar:hover {
+    background-color: #521515;
+}

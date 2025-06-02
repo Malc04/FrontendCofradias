@@ -1,0 +1,81 @@
+.perfil-contenedor {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #FDF8F2;
+    border: 1px solid #C9A85C;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(201, 168, 92, 0.2);
+    font-family: 'Segoe UI', sans-serif;
+    color: #2B2B2B;
+}
+
+.volver-inicio {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #6B1E1E;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.volver-inicio:hover {
+    color: #521515;
+}
+
+.seccion {
+    margin-bottom: 2rem;
+}
+
+.seccion h2,
+.seccion h3 {
+    color: #6B1E1E;
+    margin-bottom: 1.5rem;
+}
+
+.campo {
+    margin-bottom: 1rem;
+}
+
+.campo label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #1B1F5A;
+}
+
+.campo input {
+    width: 97%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #C9A85C;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 1rem;
+}
+
+.campo input:disabled {
+    background-color: #f1ede7;
+    color: #555;
+}
+
+.btn-guardar {
+    background-color: #6B1E1E;
+    color: #C9A85C;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-guardar:hover {
+    background-color: #521515;
+}
+
+.separador {
+    border: none;
+    border-top: 1px solid #C9A85C;
+    margin: 2rem 0;
+}

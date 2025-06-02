@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HermanoService } from '../services/Hermano/hermano.service';
-import { UsuarioService } from '../services/Usuario/usuario.service';  // Importa el servicio
+import { UsuarioService } from '../services/Usuario/usuario.service';
 import { Hermano } from '../models/Hermano/hermano';
 
 @Component({
@@ -27,7 +27,7 @@ export class AfiliacionComponent {
 
   constructor(
     private hermanoService: HermanoService,
-    private usuarioService: UsuarioService // Inyecta aquí
+    private usuarioService: UsuarioService
   ) { }
 
 
@@ -56,21 +56,18 @@ export class AfiliacionComponent {
       return;
     }
 
-    // Fecha de ingreso actual
     this.hermano.fechaIngreso = new Date();
 
     this.hermanoService.registrarHermano(this.hermano).subscribe({
       next: (nuevoHermano) => {
         localStorage.setItem('idHermano', nuevoHermano.id.toString());
 
-        // Obtener idUsuario guardado en localStorage
         const usuarioId = localStorage.getItem('usuarioId');
         if (!usuarioId) {
           this.error = 'No se encontró el usuario logueado para actualizar.';
           return;
         }
 
-        // Actualizamos solo el idHermano del usuario
         this.usuarioService.actualizarIdHermano(+usuarioId, nuevoHermano.id).subscribe({
           next: () => {
             this.exito = 'Afiliación completada con éxito y usuario actualizado.';
@@ -118,7 +115,6 @@ export class AfiliacionComponent {
           return;
         }
 
-        // Si lo encuentra, actualiza el idHermano en el usuario
         this.usuarioService.actualizarIdHermano(+usuarioid, hermanoEncontrado.id).subscribe({
           next: () => {
             localStorage.setItem('idHermano', hermanoEncontrado.id.toString());

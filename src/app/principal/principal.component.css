@@ -1,39 +1,30 @@
-/* Header ahora mucho más alto */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #6B1E1E;
-  /* Burdeos */
   border-bottom: 10px solid #1B1F5A;
-  /* Azul mariano */
   padding: 1rem 2rem;
   height: 140px;
-  /* ≈ 2.5 veces más que antes */
   box-sizing: border-box;
   position: relative;
   flex-wrap: nowrap;
 }
 
-/* Contenedores izquierdo y derecho para balancear la navbar centrada */
 .header .left,
 .header .right {
   display: flex;
   align-items: center;
   min-width: 140px;
   width: 20vw;
-  /* ancho fijo para balancear */
   flex-shrink: 0;
   justify-content: center;
 }
 
-/* Logo queda dentro de left */
 .left .logo img {
   height: 100px;
-  /* escala proporcional */
 }
 
-/* Zona usuario queda dentro right */
 .right {
   gap: 1rem;
   justify-content: flex-end;
@@ -51,11 +42,10 @@
 }
 
 .perfil img {
-  height: 60px;
-  margin-bottom: 0.1rem;
+  height: 50px;
+  margin-top: 1rem;
 }
 
-/* Navbar centrada */
 .navbar {
   flex: 1;
   display: flex;
@@ -80,7 +70,6 @@
   font-weight: bold;
 }
 
-/* Sesion y enlaces */
 .sesion a {
   text-decoration: none;
   color: #C9A85C;
@@ -89,7 +78,6 @@
   white-space: nowrap;
 }
 
-/* Notificaciones */
 .notificaciones {
   position: relative;
 }
@@ -105,11 +93,9 @@
   height: 30px;
 }
 
-/* Popup notificaciones */
 .popup-notificaciones {
   position: absolute;
   top: 110%;
-  /* justo debajo del botón */
   right: 0;
   width: 280px;
   background-color: white;
@@ -148,15 +134,12 @@
   font-size: 0.9rem;
 }
 
-/* App body */
 .app {
   padding: 2rem;
   min-height: calc(90vh - 145px);
-  /* resta header */
   overflow-y: auto;
 }
 
-/* Cerrar sesión */
 .cerrarsesion {
   text-align: right;
   padding: 1rem 2rem;
@@ -178,7 +161,6 @@
   color: white;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .header {
     flex-wrap: wrap;

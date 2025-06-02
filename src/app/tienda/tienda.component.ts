@@ -35,7 +35,6 @@ export class TiendaComponent implements OnInit, OnDestroy {
       this.productos = data;
     });
 
-    // Detectar navegación dentro de Angular
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         if (event.url === this.rutaPermitida) {
@@ -46,7 +45,6 @@ export class TiendaComponent implements OnInit, OnDestroy {
       }
     });
 
-    // Detectar recarga o cierre de pestaña
     window.addEventListener('beforeunload', this.handleBeforeUnload);
   }
 
@@ -59,7 +57,6 @@ export class TiendaComponent implements OnInit, OnDestroy {
   }
 
   handleBeforeUnload = (event: BeforeUnloadEvent) => {
-    // Si no se va a la ruta permitida, limpiar carrito
     if (!this.navegandoARutaPermitida) {
       this.limpiarCarritoAlSalir();
     }

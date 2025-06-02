@@ -1,7 +1,6 @@
 <main class="tienda-contenedor" role="main" aria-label="Sección de tienda">
     <h2>Tienda</h2>
 
-    <!-- Botón carrito con icono -->
     <button *ngIf="sesionIniciada" (click)="toggleCarrito()" class="carrito-icono" type="button"
         [attr.aria-expanded]="mostrarCarrito" aria-controls="carrito-lista" aria-label="Ver pedido en carrito">
         <img src="png/carrito.png" alt="" class="icono-carrito-img" aria-hidden="true" />
@@ -9,7 +8,6 @@
         <span class="cantidad-carrito" aria-live="polite" aria-atomic="true">{{ carrito.length }}</span>
     </button>
 
-    <!-- Carrito desplegable -->
     <section *ngIf="sesionIniciada && mostrarCarrito" class="carrito-desplegable" id="carrito-lista" aria-live="polite"
         aria-relevant="additions removals">
         <h3>Tu pedido</h3>
@@ -36,7 +34,6 @@
         </button>
     </section>
 
-    <!-- Lista de productos -->
     <section class="producto-grid" aria-label="Lista de productos disponibles">
         <article *ngFor="let producto of productos" class="producto-card" tabindex="0">
             <img [src]="producto.fotoUrl" alt="Foto de {{ producto.nombre }}" class="producto-foto" loading="lazy"
@@ -48,7 +45,6 @@
                 {{ productoExpandido === producto.id ? 'Ocultar' : 'Ver detalles' }}
             </button>
 
-            <!-- Detalles -->
             <div *ngIf="productoExpandido === producto.id" class="producto-detalle" [id]="'detalle-' + producto.id"
                 role="region" aria-live="polite">
                 <p>{{ producto.descripcion }}</p>

@@ -10,7 +10,7 @@ describe('HistorialComprasComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HistorialComprasComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(HistorialComprasComponent);
     component = fixture.componentInstance;

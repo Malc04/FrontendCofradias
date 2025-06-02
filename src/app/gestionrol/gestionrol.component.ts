@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RolService } from '../services/Rol/rol.service';
 import { UsuarioService } from '../services/Usuario/usuario.service';
 import { Rol } from '../models/Rol/rol';
-import { Usuario } from '../models/Usuario/usuario'; // Asegúrate de tener este modelo
+import { Usuario } from '../models/Usuario/usuario';
 
 @Component({
   selector: 'app-gestionrol',
@@ -20,7 +20,6 @@ export class GestionrolComponent implements OnInit {
   exito: string = '';
   error: string = '';
 
-  // Para búsqueda de usuario por idHermano
   idHermanoBusqueda: string = '';
   usuarioEncontrado?: Usuario;
 
@@ -86,16 +85,16 @@ export class GestionrolComponent implements OnInit {
 
   actualizarRolUsuario(nuevoRolId: number): void {
     if (!this.usuarioEncontrado?.id) return;
-  
+
     this.usuarioService.actualizarRolUsuario(this.usuarioEncontrado.id, nuevoRolId).subscribe({
       next: () => {
         this.exito = 'Rol actualizado correctamente.';
-        this.usuarioEncontrado!.idRol = nuevoRolId;  // Asegura actualización local
+        this.usuarioEncontrado!.idRol = nuevoRolId;
       },
       error: () => {
         this.error = 'Error al actualizar el rol del usuario.';
       }
     });
   }
-  
+
 }

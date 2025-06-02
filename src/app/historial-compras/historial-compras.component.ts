@@ -60,18 +60,15 @@ export class HistorialComprasComponent implements OnInit {
     const existente = this.comentarios[productoId];
 
     if (existente && existente.id && existente.id !== 0) {
-      // Si ya existe, actualiza (PUT)
       const actualizado: Comentario = {
         ...existente,
         contenido,
         valoracion
-        // Nota: no actualizamos fechaComentario al editar
       };
 
       this.historialService.actualizarComentario(actualizado.id, actualizado)
         .subscribe(c => this.comentarios[productoId] = c);
     } else {
-      // Si no existe, crea (POST) quitando 'id'
       const nuevoComentario: Omit<Comentario, 'id'> = {
         idUsuario: this.usuarioId,
         idProducto: productoId,
@@ -98,7 +95,7 @@ export class HistorialComprasComponent implements OnInit {
         id: 0,
         idProducto: productoId,
         idUsuario: this.usuarioId,
-        idPedido: 0,  // Este lo pondremos dinámicamente cuando se guarde el comentario
+        idPedido: 0,
         contenido: '',
         valoracion: 0,
         fechaComentario: new Date()

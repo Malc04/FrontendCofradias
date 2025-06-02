@@ -1,16 +1,23 @@
-<main>
+<main class="pantalla-resumen">
+    <a class="volver-inicio" href="/">Inicio</a>
+
     <h2>Resumen de tu compra</h2>
 
-    <div *ngFor="let item of carrito" class="producto">
-        <h3>{{ item.producto.nombre }}</h3>
-        <p>Precio unitario: {{ item.producto.precio }} €</p>
-        <p>Cantidad: {{ item.cantidad }}</p>
-        <p>Subtotal: {{ item.producto.precio * item.cantidad }} €</p>
+    <div *ngFor="let item of carrito" class="producto-box">
+        <div class="producto-contenido">
+            <img [src]="item.producto.fotoUrl" [alt]="item.producto.nombre" class="producto-img" />
+
+            <div class="producto-info">
+                <h3>{{ item.producto.nombre }}</h3>
+                <p>Precio unitario: <strong>{{ item.producto.precio }} €</strong></p>
+                <p>Cantidad: <strong>{{ item.cantidad }}</strong></p>
+                <p>Subtotal: <strong>{{ item.producto.precio * item.cantidad }} €</strong></p>
+            </div>
+        </div>
         <hr />
     </div>
 
-    <h3>Total a pagar: {{ total }} €</h3>
+    <h3 class="total">Total a pagar: <span>{{ total }} €</span></h3>
 
-    <button (click)="comprar()">Comprar</button>
-
+    <button class="btn-comprar" (click)="comprar()">Comprar</button>
 </main>

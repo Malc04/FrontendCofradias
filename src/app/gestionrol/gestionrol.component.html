@@ -1,55 +1,50 @@
-<main>
+<div class="pantalla-rol">
+    <a href="/" class="volver-inicio">← Inicio</a>
 
-    <a href="/">
-        <p>Inicio</p>
-    </a>
-    
-    <div class="gestion-rol">
+    <div class="contenedor-rol">
         <h2>Gestión de Roles</h2>
 
+        <hr class="separador" />
 
-        <hr />
         <h3>Buscar usuario por número de hermano</h3>
 
-        <input type="text" [(ngModel)]="idHermanoBusqueda" placeholder="Número de hermano" />
-        <button (click)="buscarUsuarioPorIdHermano()">Buscar</button>
+        <div class="campo-busqueda">
+            <input type="text" [(ngModel)]="idHermanoBusqueda" placeholder="Número de hermano" />
+            <button (click)="buscarUsuarioPorIdHermano()">Buscar</button>
+        </div>
 
-        <div *ngIf="usuarioEncontrado">
+        <div *ngIf="usuarioEncontrado" class="resultado-usuario">
             <p><strong>Nombre:</strong> {{ usuarioEncontrado.nombreUsuario }}</p>
             <p><strong>Email:</strong> {{ usuarioEncontrado.email }}</p>
             <p><strong>Número de Hermano:</strong> {{ usuarioEncontrado.idHermano }}</p>
-          
+
             <label for="rolSelect">Rol asignado:</label>
-            <select
-              id="rolSelect"
-              [(ngModel)]="usuarioEncontrado.idRol"
-              (change)="actualizarRolUsuario(usuarioEncontrado.idRol!)"
-            >
-              <option [ngValue]="undefined" disabled selected>Selecciona un rol</option>
-              <option *ngFor="let rol of roles" [ngValue]="rol.id">{{ rol.nombreRol }}</option>
+            <select id="rolSelect" [(ngModel)]="usuarioEncontrado.idRol"
+                (change)="actualizarRolUsuario(usuarioEncontrado.idRol!)">
+                <option [ngValue]="undefined" disabled selected>Selecciona un rol</option>
+                <option *ngFor="let rol of roles" [ngValue]="rol.id">{{ rol.nombreRol }}</option>
             </select>
-          </div>
-          
-
-
-        <button (click)="mostrarInput = !mostrarInput">
-            {{ mostrarInput ? 'Cancelar' : 'Crear nuevo rol' }}
-        </button>
-
-        <div *ngIf="mostrarInput">
-            <input [(ngModel)]="nuevoRol" placeholder="Nombre del rol" />
-            <button (click)="crearRol()">Guardar</button>
         </div>
 
-        <p *ngIf="exito" style="color: green;">{{ exito }}</p>
-        <p *ngIf="error" style="color: red;">{{ error }}</p>
+        <div class="crear-rol">
+            <button (click)="mostrarInput = !mostrarInput">
+                {{ mostrarInput ? 'Cancelar' : 'Crear nuevo rol' }}
+            </button>
 
-        <ul>
+            <div *ngIf="mostrarInput" class="form-nuevo-rol">
+                <input [(ngModel)]="nuevoRol" placeholder="Nombre del rol" />
+                <button (click)="crearRol()">Guardar</button>
+            </div>
+        </div>
+
+        <p *ngIf="exito" class="mensaje exito">{{ exito }}</p>
+        <p *ngIf="error" class="mensaje error">{{ error }}</p>
+
+        <ul class="lista-roles">
             <li *ngFor="let rol of roles">
                 {{ rol.nombreRol }}
                 <button (click)="eliminarRol(rol.id)">Eliminar</button>
             </li>
         </ul>
     </div>
-
-</main>
+</div>

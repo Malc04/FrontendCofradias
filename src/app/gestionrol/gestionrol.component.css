@@ -1,0 +1,127 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.pantalla-rol {
+    min-height: 100vh;
+    padding: 3rem 2rem;
+    background-color: #FDF8F2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    color: #2B2B2B;
+    box-sizing: border-box;
+}
+
+.volver-inicio {
+    align-self: flex-start;
+    margin-bottom: 2rem;
+    color: #6B1E1E;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.volver-inicio:hover {
+    color: #521515;
+}
+
+.contenedor-rol {
+    width: 100%;
+    max-width: 800px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(201, 168, 92, 0.15);
+}
+
+h2,
+h3 {
+    color: #6B1E1E;
+    margin-bottom: 1rem;
+}
+
+.separador {
+    border: none;
+    border-top: 1px solid #C9A85C;
+    margin: 1rem 0;
+}
+
+.campo-busqueda {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+input[type="text"],
+select,
+input {
+    padding: 0.6rem;
+    font-size: 1rem;
+    border: 1px solid #C9A85C;
+    border-radius: 6px;
+    flex: 1;
+    background-color: #fff;
+}
+
+button {
+    background-color: #6B1E1E;
+    color: #C9A85C;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #521515;
+}
+
+.resultado-usuario {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #F8F4EB;
+    border-radius: 8px;
+}
+
+.crear-rol {
+    margin-bottom: 2rem;
+}
+
+.form-nuevo-rol {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.mensaje {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.exito {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.lista-roles {
+    list-style: none;
+    padding-left: 0;
+}
+
+.lista-roles li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

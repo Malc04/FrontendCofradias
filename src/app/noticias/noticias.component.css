@@ -1,6 +1,5 @@
 .noticias-container {
     max-width: 1800px;
-    /* Doble ancho del original */
     margin: 2rem auto;
     padding: 1rem 2rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,7 +15,6 @@
     align-items: center;
     margin-bottom: 1.5rem;
     color: #6B1E1E;
-    /* burdeos */
 }
 
 .noticias-header h2 {
@@ -114,7 +112,6 @@
 .listado-noticias {
     display: flex;
     flex-direction: column;
-    /* 1 noticia por fila */
     gap: 1.5rem;
     justify-content: center;
 }
@@ -126,7 +123,6 @@
     box-shadow: 0 3px 8px rgba(201, 168, 92, 0.2);
     cursor: pointer;
     max-width: 100%;
-    /* Ocupa todo el ancho posible */
     display: flex;
     gap: 1.5rem;
     padding: 1rem;
@@ -141,19 +137,15 @@
 
 .noticia-resumen img {
     width: 280px;
-    /* rectangular */
     height: 160px;
-    /* rectangular */
     border-radius: 6px;
     object-fit: cover;
     flex-shrink: 0;
 }
 
-/* Aquí centré el texto y agrandé el título */
 .noticia-texto {
     flex-grow: 1;
     text-align: center;
-    /* texto centrado */
 }
 
 .noticia-texto h3 {
@@ -161,9 +153,7 @@
     margin: 0 0 0.5rem;
     font-weight: 700;
     font-size: 1.8rem;
-    /* más grande */
     text-align: center;
-    /* centrado */
 }
 
 .noticia-texto p {
@@ -172,14 +162,11 @@
     margin: 0;
 }
 
-/* DETALLE NOTICIA */
 
 .detalle-noticia {
     max-width: 100%;
-    /* ocupa todo el ancho posible del contenedor padre */
     width: 100%;
     box-sizing: border-box;
-    /* que el padding no añada ancho extra */
     margin: 0 auto 2rem auto;
     background-color: #FDF8F2;
     padding: 2rem;
@@ -188,7 +175,6 @@
     box-shadow: 0 0 10px rgba(201, 168, 92, 0.4);
 }
 
-/* Centro también títulos y párrafos en el detalle */
 .detalle-noticia h2,
 .detalle-noticia p {
     text-align: center;

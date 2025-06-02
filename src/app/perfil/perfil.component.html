@@ -1,49 +1,62 @@
-<main>
-    <a href="/">
-        <p>Inicio</p>
-    </a>
+<main class="perfil-contenedor">
+    <a href="/" class="volver-inicio">← Inicio</a>
 
-    <!-- Mostrar datos de usuario solo si existe -->
-    <div *ngIf="usuario as u">
+    <div *ngIf="usuario as u" class="seccion">
         <h2>Perfil de Usuario</h2>
 
-        <label>Nombre de usuario:</label>
-        <input [(ngModel)]="u.nombreUsuario" />
+        <div class="campo">
+            <label for="nombreUsuario">Nombre de usuario</label>
+            <input id="nombreUsuario" [(ngModel)]="u.nombreUsuario" type="text" />
+        </div>
 
-        <label>Email:</label>
-        <input [value]="u.email" disabled />
+        <div class="campo">
+            <label for="email">Email</label>
+            <input id="email" [value]="u.email" disabled />
+        </div>
 
-        <label>Fecha de registro:</label>
-        <input [value]="u.fechaRegistro | date:'d \'de\' MMMM \'de\' y' : 'es'" disabled />
+        <div class="campo">
+            <label for="registro">Fecha de registro</label>
+            <input id="registro" [value]="u.fechaRegistro | date:'d \'de\' MMMM \'de\' y' : 'es'" disabled />
+        </div>
 
-        <button (click)="guardarUsuario()">Guardar Usuario</button>
+        <button (click)="guardarUsuario()" class="btn-guardar">Guardar Usuario</button>
     </div>
 
-    <hr *ngIf="hermano" />
+    <hr *ngIf="hermano" class="separador" />
 
-    <!-- Mostrar datos del hermano solo si existe -->
-    <div *ngIf="hermano as h">
+    <div *ngIf="hermano as h" class="seccion">
         <h3>Datos del Hermano</h3>
 
-        <label>Nombre completo:</label>
-        <input [value]="h.nombreCompleto" disabled />
+        <div class="campo">
+            <label>Nombre completo</label>
+            <input [value]="h.nombreCompleto" disabled />
+        </div>
 
-        <label>DNI:</label>
-        <input [value]="h.dni" disabled />
+        <div class="campo">
+            <label>DNI</label>
+            <input [value]="h.dni" disabled />
+        </div>
 
-        <label>Fecha de nacimiento:</label>
-        <input [value]="h.fechaNacimiento | date:'d \'de\' MMMM \'de\' y' : 'es'" disabled />
+        <div class="campo">
+            <label>Fecha de nacimiento</label>
+            <input [value]="h.fechaNacimiento | date:'d \'de\' MMMM \'de\' y' : 'es'" disabled />
+        </div>
 
-        <label>Fecha de ingreso:</label>
-        <input [value]="h.fechaIngreso | date:'d \'de\' MMMM \'de\' y' : 'es'" disabled />
+        <div class="campo">
+            <label>Fecha de ingreso</label>
+            <input [value]="h.fechaIngreso | date:'d \'de\' MMMM \'de\' y' : 'es'" disabled />
+        </div>
 
-        <label>Número de hermano:</label>
-        <input [value]="h.numeroHermano" disabled />
+        <div class="campo">
+            <label>Número de hermano</label>
+            <input [value]="h.numeroHermano" disabled />
+        </div>
 
-        <label>Domiciliación bancaria:</label>
-        <input [(ngModel)]="h.domiciliacionBancaria" />
+        <div class="campo">
+            <label for="domiciliacion">Domiciliación bancaria</label>
+            <input id="domiciliacion" [(ngModel)]="h.domiciliacionBancaria" />
+        </div>
 
-        <button (click)="guardarHermano()">Guardar Hermano</button>
+        <button (click)="guardarHermano()" class="btn-guardar">Guardar Hermano</button>
     </div>
-
 </main>

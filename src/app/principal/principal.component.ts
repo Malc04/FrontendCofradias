@@ -82,7 +82,6 @@ export class PrincipalComponent implements OnInit {
     this.mostrarNotificaciones = false;
   }
 
-  // Opcional: cerrar al hacer click fuera
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     const target = event.target as HTMLElement;

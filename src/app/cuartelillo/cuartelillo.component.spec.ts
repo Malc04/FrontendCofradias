@@ -10,7 +10,7 @@ describe('CuartelilloComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CuartelilloComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CuartelilloComponent);
     component = fixture.componentInstance;

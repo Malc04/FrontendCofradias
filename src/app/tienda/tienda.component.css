@@ -160,8 +160,8 @@
 }
 
 .producto-foto {
-  width: 100%;
-  height: 140px;
+  width: 95%;
+  height: 300px;
   object-fit: cover;
   border-radius: 6px;
   margin-bottom: 0.75rem;

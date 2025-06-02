@@ -1,6 +1,5 @@
 main {
     background-color: #fff;
-    /* Blanco para el fondo del componente */
     padding: 2rem;
     max-width: 600px;
     margin: 2rem auto;
@@ -19,11 +18,9 @@ main {
 .nuevoafiliado,
 .vincularafiliado {
     background-color: #FDF8F2;
-    /* fondo marfil */
     padding: 1.5rem 2rem;
     border-radius: 6px;
     border: 1px solid #C9A85C;
-    /* borde oro viejo */
     box-shadow: 0 0 5px rgba(201, 168, 92, 0.3);
 }
 
@@ -31,7 +28,6 @@ main {
 .vincularafiliado h3 {
     text-align: center;
     color: #6B1E1E;
-    /* burdeos */
     margin-bottom: 1rem;
     font-weight: 600;
 }
@@ -46,14 +42,12 @@ main {
     margin-bottom: 0.3rem;
     font-weight: 500;
     color: #1B1F5A;
-    /* azul mariano */
 }
 
 .form-group input {
     padding: 0.5rem 0.75rem;
     font-size: 1rem;
     border: 1px solid #C9A85C;
-    /* oro viejo */
     border-radius: 4px;
     max-width: 100%;
     box-sizing: border-box;
@@ -63,7 +57,6 @@ main {
 .form-group input:focus {
     outline: none;
     border-color: #6B1E1E;
-    /* burdeos */
     box-shadow: 0 0 5px rgba(107, 30, 30, 0.5);
 }
 
@@ -71,9 +64,7 @@ button {
     display: block;
     margin: 1rem auto 0 auto;
     background-color: #6B1E1E;
-    /* burdeos */
     color: #C9A85C;
-    /* oro viejo */
     border: none;
     padding: 0.65rem 2rem;
     font-size: 1.1rem;

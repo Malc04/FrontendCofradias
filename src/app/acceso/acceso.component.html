@@ -1,49 +1,47 @@
-<main>
-    <a href="/">
-        <p>Inicio</p>
-    </a>
+<main class="pantalla-acceso">
 
-    <!-- Formulario de Registro -->
-    <div class="form">
-        <form (ngSubmit)="registrar()" #form="ngForm" class="registro">
+    <a class="volver-inicio" href="/">Inicio</a>
+
+    <img src="svg/logo-r.svg" alt="Logo Hermandad" class="logo-hermandad" />
+
+    <div class="tabs-selector">
+        <button (click)="mostrarRegistro = false" [class.active]="!mostrarRegistro">Iniciar sesión</button>
+        <button (click)="mostrarRegistro = true" [class.active]="mostrarRegistro">Registrarse</button>
+    </div>
+
+    <div class="form-container">
+
+        <form *ngIf="mostrarRegistro" (ngSubmit)="registrar()" #form="ngForm" class="formulario">
             <h2>Registro</h2>
+
             <label>Nombre de usuario:</label>
             <input type="text" name="nombreUsuario" [(ngModel)]="nuevoUsuario.nombreUsuario" required />
-            <br />
 
             <label>Email:</label>
             <input type="email" name="email" [(ngModel)]="nuevoUsuario.email" required />
-            <br />
 
             <label>Contraseña:</label>
             <input type="password" name="contrasenya" [(ngModel)]="nuevoUsuario.contrasenya" required />
-            <br />
 
             <button type="submit">Registrarse</button>
 
-            <p *ngIf="error">{{ error }}</p>
-            <p *ngIf="exito">{{ exito }}</p>
+            <p class="mensaje-exito" *ngIf="exito">{{ exito }}</p>
+            <p class="mensaje-error" *ngIf="error">{{ error }}</p>
         </form>
-    </div>
 
-    <!-- Formulario de Inicio de Sesión -->
-    <div class="form">
-        <form (ngSubmit)="iniciarSesion()" #formLogin="ngForm" class="iniciosesion">
+        <form *ngIf="!mostrarRegistro" (ngSubmit)="iniciarSesion()" #formLogin="ngForm" class="formulario">
             <h2>Iniciar sesión</h2>
+
             <label>Nombre de usuario o Email:</label>
             <input type="text" name="login" [(ngModel)]="loginUsuario.login" required />
-            <br />
 
             <label>Contraseña:</label>
             <input type="password" name="contrasenyaLogin" [(ngModel)]="loginUsuario.contrasenya" required />
-            <br />
 
             <button type="submit">Iniciar sesión</button>
 
-            <p *ngIf="loginError">{{ loginError }}</p>
-            <p *ngIf="loginExito">{{ loginExito }}</p>
-
+            <p class="mensaje-exito" *ngIf="loginExito">{{ loginExito }}</p>
+            <p class="mensaje-error" *ngIf="loginError">{{ loginError }}</p>
         </form>
     </div>
-
 </main>
